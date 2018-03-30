@@ -1,0 +1,198 @@
+/* Slider */
+
+.slick-slider {
+    position: relative;
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+.slick-list {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.dragging {
+        cursor: pointer;
+        cursor: hand;
+    }
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    height: 100%;
+}
+
+.slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    .slick-loading & {
+        visibility: hidden;
+    }
+}
+.slick-slide {
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    [dir="rtl"] & {
+        float: right;
+    }
+    img {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+    }
+    &.slick-loading img {
+        display: none;
+    }
+
+    display: none;
+
+    &.dragging img {
+        pointer-events: none;
+    }
+
+    .slick-initialized & {
+        display: block;
+    }
+
+    .slick-loading & {
+        visibility: hidden;
+    }
+
+    .slick-vertical & {
+        display: block;
+        height: auto;
+        border: 1px solid transparent;
+    }
+}
+.slick-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0;
+    li {
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 5px;
+        button[type='button'] {
+            background: transparent;
+            font-size: 0;
+            line-height: 0;
+            padding: 0;
+            border: 2px solid rgba(255, 255, 255, .7);
+            z-index: 1;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            &:hover {
+                background-color: transparent;
+            }
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        &.slick-active {
+            button {
+                background: $w;
+            }
+        }
+    }
+}
+
+.slick-slider.slider-events {
+    position: relative;
+    button.slick-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        font-size: 0;
+        border: none;
+        z-index: 1;
+        &:hover {
+            &::before,
+            &::after {
+                box-shadow: 0 0 20px 1px rgba(255,255,255, .7);
+            }
+        }
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            width: 16px;
+            height: 3px;
+            position: absolute;
+            background: $w;
+        }
+        &.slick-prev {
+            left: 0;
+            @include m($S) {
+                left: -30px;
+            }
+            &::before {
+                top: 20px;
+                left: 10px;
+                transform: rotate(315deg);
+            }
+            &::after {
+                top: 30px;
+                left: 10px;
+                transform: rotate(45deg);
+            }
+        }
+        &.slick-next {
+            right: 0;
+            @include m($S) {
+                right: -30px;
+            }
+            &::before {
+                top: 20px;
+                right: 10px;
+                transform: rotate(45deg);
+            }
+            &::after {
+                top: 30px;
+                right: 10px;
+                transform: rotate(315deg);
+            }
+        }
+    }
+}
+

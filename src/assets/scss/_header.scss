@@ -1,0 +1,246 @@
+#header {
+	position: relative;
+	z-index: 99;
+	background: $dark-grey;
+	.navbar-ft {
+		background: transparent;
+		margin: 0;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		.navbar-header-ft {
+			padding: 20px;
+			@include m($M) {
+				padding: 28px 25px 28px 25px;
+			}
+			.navbar-toggle {
+				margin: 0;
+				padding: 0;
+				border: none;
+				width: auto;
+				border-radius: 0;
+				&:hover,
+				&:focus {
+					background: transparent;
+				}
+				.icon-bar {
+					width: 20px;
+					height: 2px;
+					background-color: $w;
+				}
+				@include r($M-) {
+					padding-top: 7px;
+				}
+			}
+			a.navbar-brand {
+				display: inline-block;
+				padding: 0;
+				height: auto;
+				img {
+					display: block;
+					width: 140px;
+					@include m($M) {
+						width: auto;
+						//padding: 10px 0;
+					}
+				}
+				@include m($M) {
+					height: auto;
+				}
+			}
+		}
+		.navbar-collapse-ft {
+			border: none;
+			box-shadow: none;
+			@include m($M) {
+				float: right;
+				padding: 28px 25px 28px 10px;
+			}
+			&::after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.navbar-nav-ft {
+				@include r($M-) {
+					background: rgba(0,0,0,.9);
+					min-height: calc(100vh - 56px);
+					margin: 0 -15px;
+					padding-left: 20px;
+				}
+			}
+			.menu-item {
+				margin: 0;
+				&.dropdown {
+					position: relative;
+					@include m($M) {
+						text-align: center;
+					}
+					.dropdown-menu {
+						@include r($M-) {
+							display: block;
+							position: static;
+							float: none;
+							width: auto;
+							margin-top: 0;
+							background: transparent;
+							padding: 0 0 0 15px !important;
+							border: none;
+							li {
+								&:hover {
+									background: transparent;
+								}
+								a {
+									color: $w;
+									background: transparent;
+								}
+							}
+						}
+					}
+					> a.dropdown-toggle {
+						padding-right: 25px;
+						&::after {
+							font-family:Font Awesome\ 5 Free;
+							font-weight: 600;
+							content: '\f078';
+							@include r($M-) {
+								display: none;
+							}
+							display: block;
+							position: absolute;
+							right: 8px;
+							top: 14px;
+							@include r($M-) {
+								left: 105px;
+							}
+							width: 14px;
+							height: 14px;
+							line-height: 14px;
+							color: $w;
+							font-size: 10px;
+							transform: rotate(0deg);
+							@include tr(.5s);
+							text-align: center;
+						}
+					}
+					&.open {
+						a {
+							background: transparent;
+						}
+						.dropdown-menu {
+							background: rgba(0,0,0,.5);
+							@include m($M) {
+								border: 1px solid$red;
+							}
+							padding: 0;
+							li {
+								position: relative;
+								z-index: 1;
+								@include tr();
+								&:hover {
+									background: $red;
+								}
+								a {
+									color: $w;
+								}
+							}
+						}
+						.dropdown-toggle {
+							&::after {
+								transform: rotate(180deg);
+							}
+						}
+					}
+				}
+				&:last-child {
+					margin-right: 0;
+				}
+				&:hover {
+					a {
+						color: $red;
+						&.dropdown-toggle {
+							&::after {
+								color: $red;
+							}
+						}
+					}
+				}
+				a {
+					display: inline-block;
+					text-transform: uppercase;
+					color: #fefefe;
+					font-family: $saira;
+					font-size: 12px;
+					font-weight: 500;
+					line-height: 44px;
+					padding: 0;
+					@include m($M) {
+						padding: 0 15px;
+					}
+					letter-spacing: 1px;
+					@include tr();
+					&.login-link-header {
+						color: $red;
+						&:hover {
+							color: $w;
+						}
+					}
+					&.btn-red-bg {
+						display: inline-block;
+						line-height: 40px;
+						padding: 0 35px;
+						background-color:$red;
+						border-radius: 22px;
+						border: 2px solid$red;
+						color: $w;
+						text-transform: uppercase;
+						@include tr();
+						&:hover {
+							text-decoration: none;
+							background-color: transparent;
+							color: $w;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media (max-width: 991px) {
+	.navbar-header {
+		float: none;
+	}
+	.navbar-left,.navbar-right {
+		float: none !important;
+	}
+	.navbar-toggle {
+		display: block;
+	}
+	.navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+	.navbar-collapse.collapse {
+		display: none!important;
+	}
+	.navbar-nav {
+		float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+		float: none;
+	}
+	.navbar-nav>li>a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.collapse.in{
+		display:block !important;
+	}
+	.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+}

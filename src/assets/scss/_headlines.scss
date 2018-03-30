@@ -1,0 +1,34 @@
+h1, .h1 {
+	@include ff(24, 32, 600);
+	font-family: $saira;
+	margin: 0 0 3rem;
+	@include m($M) {
+		@include ff(36, 44, 600);
+	}
+}
+
+h2, .h2 {
+	@include ff(30, 38, 600);
+	font-family: $saira;
+	margin: 0 0 2rem;
+}
+
+h3, .h3 {
+	@include ff(26, 44, 600);
+	font-family: $saira;
+	margin: 0 0 2rem;
+}
+
+h4, .h4 {
+	@include ff(22, 28, 600);
+	margin: 0 0 2rem;
+}
+
+h5, .h5 {
+	@include ff(20, 28, 600);
+	margin: 0 0 1.5rem;
+}
+
+h6, .h6 {
+	font-size: .75rem
+}

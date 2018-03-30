@@ -1,0 +1,1129 @@
+.pages-title-wrap {
+	margin-top: 50px;
+	@include m($M) {
+		margin-top: 75px;
+	}
+	.pages-title {
+		margin-bottom: 30px;
+		@include m($M) {
+			margin-bottom: 75px;
+		}
+	}
+}
+
+.tables-wrap {
+	.tables-title {
+		margin-bottom: 30px;
+		@include r($M-) {
+			display: none;
+		}
+	}
+}
+
+.icon-style {
+	font-size: 15px;
+	line-height: 15px;
+}
+
+/*---------------------------------General Tables Styles*/
+
+.table {
+	display: table;
+	position: relative;
+	margin-bottom: 0;
+	@include m($M) {
+		margin-bottom: 100px;
+		border-radius: 10px;
+		border: 1px solid $beige;
+	}
+}
+
+.tr {
+	position: relative;
+	display: table-row;
+	@include tr(.2s);
+	&:hover {
+		background: #f6f6f6;
+		cursor: pointer;
+		.td {
+			text-decoration: none;
+		}
+	}
+	&.tr-main-table {
+		@include m($M) {
+			.td,
+			.th {
+				&.max-w-20 {
+					max-width: 20%;
+				}
+				&.max-w-19 {
+					max-width: 19%;
+				}
+				&.max-w-18 {
+					max-width: 18%;
+				}
+				&.max-w-17 {
+					max-width: 17%;
+				}
+				&.max-w-16 {
+					max-width: 16%;
+				}
+				&.max-w-15 {
+					max-width: 15%;
+				}
+				&.max-w-14 {
+					max-width: 14%;
+				}
+				&.max-w-13 {
+					max-width: 13%;
+				}
+				&.max-w-12 {
+					max-width: 12%;
+				}
+				&.max-w-11 {
+					max-width: 11%;
+				}
+				&.max-w-10 {
+					max-width: 10%;
+				}
+				&.max-w-9 {
+					max-width: 9%;
+				}
+				&.max-w-8 {
+					 max-width: 8%;
+				}
+				&.max-w-7 {
+					max-width: 7%;
+				}
+				&.max-w-6 {
+					max-width: 6%;
+				}
+				&.w-20 {
+					width: 20%;
+				}
+				&.w-19 {
+					width: 19%;
+				}
+				&.w-18 {
+					width: 18%;
+				}
+				&.w-17 {
+					width: 17%;
+				}
+				&.w-16 {
+					width: 16%;
+				}
+				&.w-15 {
+					width: 15%;
+				}
+				&.w-14 {
+					width: 14%;
+				}
+				&.w-13 {
+					width: 13%;
+				}
+				&.w-12 {
+					width: 12%;
+				}
+				&.w-11 {
+					width: 11%;
+				}
+				&.w-10 {
+					width: 10%;
+				}
+				&.w-9 {
+					width: 9%;
+				}
+				&.w-8 {
+					width: 8%;
+				}
+				&.w-7 {
+					width: 7%;
+				}
+				&.w-6 {
+					width: 6%;
+				}
+			}
+			&:last-of-type {
+				.td {
+					&:first-of-type {
+						border-radius: 0 0 0 10px;
+					}
+					&:nth-last-of-type(2) {
+						border-radius: 0 0 10px 0;
+					}
+				}
+			}
+		}
+		@include r($M-) {
+			.td {
+				&.expected-date {
+					&::before {
+						content: 'EXPECTED DATE';
+					}
+				}
+				&.sender {
+					&::before {
+						content: 'SENDER';
+					}
+				}
+				&.shipper {
+					&::before {
+						content: 'SHIPPER';
+					}
+				}
+				&.code {
+					&::before {
+						content: 'CODE';
+					}
+				}
+				&.number {
+					&::before {
+						content: '№';
+					}
+				}
+				&.destination {
+					&::before {
+						content: 'DESTINATION';
+					}
+				}
+				&.container-th {
+					&::before {
+						content: 'CONTAINER';
+					}
+				}
+				&.number-containers-table {
+					&::before {
+						content: 'NUMBER';
+					}
+				}
+				&.status {
+					&::before {
+						content: 'STATUS';
+					}
+				}
+				&.size {
+					&::before {
+						content: 'SIZE';
+					}
+				}
+				&.closing-date {
+					&::before {
+						content: 'CLOSING DATE';
+					}
+				}
+				&.shipping-date {
+					&::before {
+						content: 'SHIPPING DATE';
+					}
+				}
+				&.destination {
+					&::before {
+						content: 'DESTINATION';
+					}
+				}
+				&.filled {
+					&::before {
+						content: '% FILLED';
+					}
+				}
+
+				/*----------------------------IMPORT SECTION STYLES-*/
+
+				&.number-text {
+					&::before {
+						content: 'NUMBER';
+					}
+				}
+				&.vessel {
+					&::before {
+						content: 'VESSEL';
+					}
+				}
+				&.eta {
+					&::before {
+						content: 'ETA';
+					}
+				}
+				&.origin {
+					&::before {
+						content: 'ORIGIN';
+					}
+				}
+				&.arrived-date {
+					&::before {
+						content: 'ARRIVED DATE';
+					}
+				}
+				&.customs-status {
+					&::before {
+						content: 'CUSTOMS STATUS';
+					}
+				}
+				&.hs-code {
+					&::before {
+						content: 'HS CODE';
+					}
+				}
+				&.taxes {
+					&::before {
+						content: 'TAXES';
+					}
+				}
+
+				/*----------------------------LAST MILE SECTION STYLES-*/
+
+				&.customer {
+					&::before {
+						content: 'CUSTOMER';
+					}
+				}
+				&.delivery-address {
+					&::before {
+						content: 'DELIVERY ADDRESS';
+					}
+				}
+				&.product {
+					&::before {
+						content: 'PRODUCT';
+					}
+				}
+				&.delivery-range {
+					&::before {
+						content: 'DELIVERY RANGE';
+					}
+				}
+				&.delivery-status {
+					&::before {
+						content: 'DELIVERY STATUS';
+					}
+				}
+				&.scheduled-delivery-date {
+					&::before {
+						content: 'SCHEDULED DELIVERY DATE';
+					}
+				}
+				&.delivery-remarks {
+					&::before {
+						content: 'DELIVERY REMARKS';
+					}
+				}
+			}
+		}
+	}
+	@include r($M-) {
+		display: block;
+		border-radius: 10px;
+		border: 1px solid $beige;
+		&:first-of-type {
+			border: none;
+			margin-bottom: 0;
+		}
+	}
+	&.tr-main-table {
+		margin-bottom: 20px;
+	}
+}
+
+.th {
+  display: none;
+  @include m($M) {
+    display: table-cell;
+    color: $w;
+    @include ff(12,20,600);
+    padding: 10px;
+    vertical-align: middle;
+    letter-spacing: .5px;
+    &:first-of-type {
+      padding-left: 45px;
+      border-radius: 10px 0 0;
+    }
+    &:last-of-type {
+      padding-right: 45px;
+      border-radius: 0 10px 0 0;
+    }
+  }
+}
+
+.td {
+  display: block;
+  @include m($M) {
+    display: table-cell;
+    vertical-align: top;
+    padding: 30px 10px;
+    @include ff(13,22,500);
+    color: $text;
+    letter-spacing: .5px;
+    &:first-of-type {
+      padding-left: 45px;
+      color: $red;
+      text-decoration: underline;
+    }
+    &:last-of-type {
+      padding-right: 45px;
+    }
+	  &.text-overfl-ellips {
+		  @include m($M) {
+			  text-overflow: ellipsis;
+			  overflow: hidden;
+			  white-space: nowrap;
+			  &.max-w-140px {
+				  max-width: 140px;
+			  }
+			  &.max-w-140px {
+				  max-width: 100px;
+			  }
+		  }
+	  }
+  }
+  @include r($M-) {
+	  &:first-of-type {
+		  background: $text;
+		  span {
+			  color: $red;
+			  text-decoration: underline;
+		  }
+		  &::before {
+			  color: $w;
+		  }
+	  }
+    span {
+      padding: 15px;
+      @include ff(12,20,400);
+      color: $text;
+      display: inline-block;
+	    vertical-align: top;
+    }
+    &::before {
+      padding: 15px;
+      @include ff(12,20,600);
+      display: inline-block;
+      width: 44%;
+      color: $text;
+    }
+  }
+}
+
+
+.bg-light-grey {
+  .th {
+    background: #7a7a7a;
+  }
+}
+.bg-dark-grey {
+  .th {
+    background: $text;
+  }
+}
+
+.color-red {
+	color: $red;
+}
+
+.tar {
+	text-align: right;
+}
+
+.tar-m {
+	@include m($M) {
+		text-align: right;
+	}
+}
+
+/*---------------------------------Tables Styles BY CLASSES*/
+
+.products-section-table {
+	.tr-main-table {
+		.td {
+			@include r($M) {
+				&::before {
+					width: 43%;
+				}
+			}
+		}
+	}
+}
+
+/*-----------------------------------------Popup General Styles*/
+
+.popup-window {
+	display: none;
+	.open & {
+		display: block;
+	}
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: $w;
+	box-shadow: 0 0 15px rgba(64,64,64,.2);
+	padding: 35px 0;
+	max-width: 100%;
+	z-index: 99;
+	@include r($M-) {
+		position: fixed;
+		width: 100%;
+		top: 50%;
+		padding: 60px 0 0;
+		max-height: 100%;
+		overflow: auto;
+	}
+	@include m($M) {
+		&.popup-window-width-770 {
+			width: 770px;
+			max-width: 100%;
+		}
+	}
+	.info-bar {
+		padding: 0 35px;
+		margin-bottom: 35px;
+		&.info-bar-products {
+			margin-bottom: 15px;
+		}
+		@include r($M-) {
+			padding: 0 15px;
+			margin-bottom: 25px;
+			text-align: right;
+		}
+		.date-cell {
+			display: inline-block;
+			@include ff(15,23,600);
+			padding-right: 18px;
+			@include r($M-) {
+				float: left;
+			}
+		}
+		.container-cell {
+			display: inline-block;
+			padding: 0 20px;
+			@include ff(13,21,400);
+			color: $gray;
+			span {
+				@include ff(15,23,600);
+				color: $text;
+				margin: 0 5px;
+			}
+			@include r($M-) {
+				padding: 0 0 0 5px;
+				margin-bottom: 25px;
+			}
+		}
+		.delivery-address-popup-cell {
+			display: inline-block;
+			@include ff(13,21,400);
+			color: $gray;
+		}
+		.delivery-status-popup-cell {
+			display: inline-block;
+			@include ff(12,20,400);
+			color: $text;
+			padding: 0 50px 0 40px;
+			span {
+				font-weight: 500;
+			}
+		}
+		.icon-list {
+			display: inline-block;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			@include r($M-) {
+				text-align: center;
+				padding: 0 5px;
+				width: 100%;
+			}
+			li {
+				display: inline-block;
+				padding: 0 25px;
+				position: relative;
+			}
+			.icon-popup-container-wrap {
+				& > i {
+					display: block;
+					font-size: 17px;
+					line-height: 17px;
+					color: #878787;
+					@include tr();
+				}
+				&.active,
+				&:hover {
+					> i {
+						color: $red;
+					}
+				}
+			}
+		}
+	}
+	.table-popup {
+		margin-bottom: 45px;
+		display: table;
+		width: 100%;
+		@include r($M-) {
+			padding: 0 15px;
+			margin-bottom: 20px;
+			.tr {
+				border: none;
+				border-radius: 0;
+			}
+		}
+		.tr {
+			&:hover {
+				cursor: auto;
+				background: transparent;
+			}
+		}
+		.th {
+			background: #f8f8f8;
+			color: $text;
+			@include ff(12,50,400);
+			padding-top: 0;
+			padding-bottom: 0;
+			&:first-of-type {
+				@include m($M) {
+					padding-left: 35px;
+				}
+			}
+			&:last-of-type {
+				@include m($M) {
+					padding-right: 35px;
+				}
+			}
+			&.cell-total-heading {
+				font-weight: 500;
+				@include m($M) {
+					text-align: right;
+				}
+			}
+		}
+		.td {
+			@include ff(13,31,500);
+			color: $text;
+			text-decoration: none;
+			padding-top: 10px;
+			padding-bottom: 0;
+			&:first-of-type {
+				@include m($M) {
+					padding-left: 35px;
+				}
+				@include r($M-) {
+					background: #f8f8f8;
+					span {
+						text-decoration: none;
+					}
+				}
+			}
+			&:last-of-type {
+				@include m($M) {
+					padding-right: 35px;
+				}
+			}
+		}
+		.tr-table-popup {
+			.td {
+				&.cell-total-value {
+					span {
+						font-weight: 700;
+					}
+					@include m($M) {
+						text-align: right;
+					}
+					&::before {
+						@include r($M-) {
+							font-weight: 500;
+						}
+					}
+				}
+			}
+			@include r($M-) {
+				margin-bottom: 25px;
+				.td {
+					span {
+						@include r($M-) {
+							display: inline-block;
+							padding: 15px;
+							@include ff(13, 20, 500);
+							color: $text;
+							&.popup-wrapper-value-mob {
+								padding: 0;
+							}
+						}
+					}
+					&::before {
+						@include r($M-) {
+							padding: 15px;
+							@include ff(12, 20, 400);
+							display: inline-block;
+							width: 45%;
+							color: $text;
+							vertical-align: top;
+						}
+					}
+				}
+			}
+		}
+	}
+	.total-line {
+		float: right;
+		width: 275px;
+		margin-bottom: 20px;
+		@include r($M-) {
+			float: none;
+			padding: 0 30px;
+			width: auto;
+		}
+		.total-value {
+			margin-bottom: 25px;
+			padding-right: 35px;
+			@include ff(12,20,600);
+			color: $gray;
+			@include r($M) {
+				padding-right: 0;
+			}
+			span {
+				float: right;
+				@include ff(13,21,700);
+				color: $text;
+				@include r($M-) {
+					width: 55%;
+					padding: 0 15px;
+				}
+			}
+		}
+	}
+	.footer-line {
+		padding: 0 35px;
+		@include r($M-) {
+			padding: 0 15px;
+			text-align: center;
+		}
+	}
+}
+
+.selects-problem-wrap {
+	margin-bottom: 20px;
+}
+
+/*---------------------------------------------Popups By Classes Styles*/
+
+
+.popup-incoming-shipment {
+	@include m($S) {
+		width: 655px;
+		max-width: 100%;
+	}
+	.td {
+		@include r($M-) {
+			&.product {
+				&::before {
+					content: 'PRODUCT:';
+				}
+			}
+			&.hs-code {
+				&::before {
+					content: 'HS CODE:';
+				}
+			}
+			&.number-popup-cell {
+				&::before {
+					content: '№';
+				}
+			}
+			&.weight {
+				&::before {
+					content: 'WEIGHT:';
+				}
+			}
+			&.volume {
+				&::before {
+					content: 'VOLUME:';
+				}
+			}
+			&.delivery-range {
+				&::before {
+					content: 'DELIVERY RANGE';
+				}
+			}
+			&.code {
+				&::before {
+					content: 'CODE:';
+				}
+			}
+		}
+	}
+}
+
+.popup-containers-section {
+	padding-bottom: 0;
+	width: 771px;
+	max-width: 100%;
+	.info-bar {
+		@include r($M-) {
+			text-align: left;
+		}
+		.container-cell {
+			@include ff(15, 23, 600);
+			color: $text;
+			padding-left: 0;
+			@include r($M-) {
+				margin-bottom: 20px;
+			}
+		}
+		.icon-list {
+			@include r($M-) {
+				width: auto;
+				float: right;
+				margin-top: 5px;
+			}
+			@include r($S-) {
+				margin-top: 2px;
+			}
+		}
+	}
+	.icon-popup-container-wrap {
+		position: relative;
+	}
+	.table-popup.container-table-popup {
+		.tr-table-popup {
+			@include r($M-) {
+				margin-bottom: 20px;
+			}
+		}
+	}
+	.container-table-popup {
+		.th {
+			color: $text;
+			@include ff(12,20,400);
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+		.td {
+			@include ff(13,21,500);
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.td {
+			@include r($M-) {
+				padding-top: 0;
+				padding-bottom: 0;
+				&.vessel {
+					&::before {
+						content: 'VESSEL';
+					}
+				}
+				&.imo {
+					&::before {
+						content: 'IMO';
+					}
+				}
+				&.mmsi {
+					&::before {
+						content: 'MMSI';
+					}
+				}
+				&.total-weight {
+					&::before {
+						content: 'TOTAL WEIGHT';
+					}
+				}
+				&.total-volume {
+					&::before {
+						content: 'TOTAL VOLUME';
+					}
+				}
+				&.number-popup-cell {
+					&::before {
+						content: '№';
+					}
+				}
+			}
+		}
+	}
+	.container-table-popup-heading {
+		@include ff(15,23,600);
+		color: $text;
+		margin-bottom: 15px;
+		padding: 0 35px;
+	}
+	.table-popup-with-total-line {
+		margin-bottom: 0;
+		.tr-table-popup {
+			.td {
+				@include r($M-) {
+					&::before {
+						width: 42%;
+					}
+					&.product {
+						&::before {
+							content: 'PRODUCT';
+						}
+					}
+					&.code {
+						&::before {
+							content: 'CODE';
+						}
+					}
+					&.hs-code {
+						&::before {
+							content: 'HS CODE';
+						}
+					}
+					&.received {
+						&::before {
+							content: 'RECEIVED';
+						}
+					}
+				}
+			}
+		}
+		.icon-list {
+			display: inline-block;
+			list-style: none;
+			padding: 0 0 0 15px;
+			margin: 0;
+			width: 100%;
+			@include r($M-) {
+				text-align: center;
+				padding: 0 5px;
+				width: 100%;
+			}
+			li {
+				display: inline-block;
+				padding: 0 0 0 25px;
+				position: relative;
+				button {
+					& > i {
+						display: block;
+						font-size: 17px;
+						line-height: 17px;
+						color: #878787;
+						@include tr();
+						&:hover {
+							color: $red;
+							cursor: pointer;
+						}
+					}
+				}
+			}
+			.icon-popup-container-wrap {
+				&.active {
+					& > i {
+						color: $red;
+					}
+				}
+				& > i {
+					display: block;
+					font-size: 17px;
+					line-height: 17px;
+					color: #878787;
+					@include tr();
+					&:hover {
+						color: $red;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+	.tr-total-line {
+		display: none;
+		@include m($M) {
+			display: table-row;
+			height: 42px;
+		}
+		&:last-of-type {
+			.total-line {
+				&::after {
+					content: '';
+					border-bottom: none;
+					padding-bottom: 0;
+				}
+			}
+		}
+	}
+	.total-line {
+		position: absolute;
+		right: 0;
+		width: 100%;
+		text-align: right;
+		&::after {
+			content: '';
+			border-bottom: 1px solid $beige;
+			padding-bottom: 20px;
+			display: block;
+		}
+		.total-value {
+			display: inline-block;
+			margin-bottom: 0;
+			padding: 0 35px 0 5px;
+			span {
+				padding-left: 8px;
+			}
+		}
+	}
+	.td.visible-mob.cell-total-value {
+		@include r($M-) {
+			&.total-weight {
+				&::before {
+					content: 'TOTAL WEIGHT';
+					font-weight: 600;
+					color: #8a8a8a;
+				}
+			}
+			&.total-volume {
+				margin-bottom: 35px;
+				&::before {
+					content: 'TOTAL VOLUME';
+					font-weight: 600;
+					color: #8a8a8a;
+				}
+			}
+		}
+		@include m($M) {
+			display: none;
+		}
+	}
+}
+
+.popup-deliveries-section {
+	.info-bar {
+		.delivery-address-popup-cell {
+			display: inline-block;
+			@include ff(13, 21, 400);
+			color: $gray;
+			@include r($M-) {
+				padding-left: 15px;
+				float: right;
+			}
+		}
+		.delivery-status-popup-cell {
+			display: inline-block;
+			@include ff(12, 20, 400);
+			color: $text;
+			padding: 0 50px 0 40px;
+			@include r($M-) {
+				position: absolute;
+				top: 18px;
+				left: 0;
+				padding: 0 15px;
+			}
+			span {
+				font-weight: 500;
+			}
+		}
+		.icon-list {
+			@include r($M-) {
+				display: block;
+				text-align: center;
+				float: none;
+			}
+		}
+	}
+	.data-input-title {
+		@include ff(13, 21, 500);
+		color: $text;
+		margin: 0 0 15px;
+		text-align: left;
+	}
+}
+
+/*---------------------------------------------Popups-Container General Styles*/
+
+.popup-container {
+	display: none;
+	&.open {
+		display: block;
+		position: absolute;
+		top: calc(100% + 15px);
+		left: 50%;
+		transform: translateX(-50%);
+		background: $w;
+		padding: 15px;
+		border-radius: 10px;
+		box-shadow: 0 0 10px rgba(150,150,150,.2);
+		text-align: center;
+		z-index: 101;
+		&::before {
+			content: '';
+			position: absolute;
+			top: -20px;
+			border: 10px solid transparent;
+			border-bottom: 10px solid $w;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		&.problem-popup {
+			padding-top: 30px;
+			left: 20%;
+			&::before {
+				content: '';
+				left: 61%;
+			}
+		}
+		span.title-popup {
+			display: inline-block;
+			@include ff(13,21,500);
+			margin-bottom: 15px;
+			padding: 0 !important;
+		}
+		.download-img {
+			width: 100px;
+			height: 125px;
+			border: 1px solid $beige;
+			margin-bottom: 15px;
+			position: relative;
+			img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 5;
+				background: rgba(0,0,0,.45);
+				& > i {
+					display: inline-block;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: 10;
+					color: $w;
+					font-size: 15px;
+					line-height: 15px;
+				}
+			}
+		}
+		span.upload-new {
+			display: inline-block;
+			@include ff(13,21,500);
+			padding: 0 !important;
+		}
+		.upload-icon {
+			i {
+				display: inline-block;
+				font-size: 15px;
+				line-height: 15px;
+				color: $gray;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+		&.popup-container-pos-r {
+			@include r($M) {
+				left: auto;
+				transform: translateX(0);
+				right: -13px;
+				&::before {
+					right: 0;
+					left: auto;
+				}
+			}
+		}
+	}
+}

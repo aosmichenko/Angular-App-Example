@@ -1,0 +1,115 @@
+#footer {
+	background-color: #1f1f1f;
+	padding: 25px 20px;
+	@include m($S) {
+		padding: 20px 40px;
+	}
+	.footer-menu {
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		list-style: none;
+		@include r($M-) {
+			margin-bottom: 35px;
+		}
+		li {
+			display: inline-block;
+			a {
+				font-family: $saira;
+				@include ff(12, 25, 500);
+				color: #fefefe;
+				padding-left: 18px;
+				padding-right: 18px;
+				@include tr();
+				text-transform: uppercase;
+				&:hover {
+					color: #fefefe;
+					opacity: .5;
+					text-decoration: none;
+				}
+			}
+			@include r($M-) {
+				display: inline-block;
+				&:first-child {
+					a {
+						padding-left: 0;
+					}
+				}
+				&:last-child {
+					a {
+						padding-right: 0;
+					}
+				}
+				a {
+					font-family: $saira;
+					@include ff(11,19,500);
+					color: #fefefe;
+					padding-left: 16px;
+					padding-right: 16px;
+					@include tr();
+					text-transform: uppercase;
+					&:hover {
+						color: #fefefe;
+						opacity: .5;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+	.copyright-footer {
+		font-family: $saira;
+		@include ff(14,22,500);
+		color: $w;
+		text-align: center;
+		margin-bottom: 0;
+		@include m($M) {
+			@include ff(16,25,400);
+			text-align: left;
+		}
+	}
+	.social-links-list {
+		padding: 0;
+		list-style: none;
+		text-align: center;
+		margin: 0 0 35px;
+		@include m($M) {
+			text-align: right;
+			margin: 0;
+		}
+		li {
+			display: inline-block;
+			padding-left: 15px;
+			padding-right: 15px;
+			&.facebook-link
+			{
+				a {
+					background-position: 4px 0;
+				}
+			}
+			&.twitter-link
+			{
+				a {
+					background-position: -42px 1px;
+				}
+			}
+			&.google-plus-link {
+				padding-right: 0;
+				a {
+					background-position: -88px 0;
+				}
+			}
+			a {
+				display: inline-block;
+				color: $w;
+				font-size: 17px;
+				line-height: 17px;
+				@include tr();
+				&:hover
+				{
+					opacity: .5;
+				}
+			}
+		}
+	}
+}

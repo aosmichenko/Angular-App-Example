@@ -1,0 +1,301 @@
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	font-family:$saira;
+	@include ff(16, 24, 400);
+	color: $b;
+	text-align: center;
+	border-radius: 5px;
+	border: 1px solid $b;
+	//text-transform: uppercase;
+	@include tr;
+	display: inline-block;
+	background: transparent;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    margin-top: 15px;
+	@include r(767) {
+		margin-top: 5px;
+	}
+	&:hover {
+		background-color: $b;
+		color: $w;
+	}
+}
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid $beige;
+	border-radius: 5px;
+	padding: 11px 20px;
+	@include ff(13,21,500);
+	color: $text;
+	&::-webkit-input-placeholder {
+		color: inherit;
+	}
+}
+textarea {
+	width: 100%;
+	max-width: 100%;
+	min-width: 100%;
+	//height: 150px;
+	resize: none;
+}
+
+.selects-wrap {
+	position: relative;
+	display: inline-block;
+}
+
+.select-de {
+	border-radius: 5px;
+	border: 1px solid $beige;
+	background: transparent;
+	-webkit-appearance: none;
+	position: relative;
+	z-index: 3;
+	i {
+		display: block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		color: $b;
+	}
+}
+
+#dropdown-product-info {
+	padding: 13px 76px 13px 25px;
+	@include ff(13,21,500);
+	@include r($M-) {
+		width: 100%;
+	}
+	& + i {
+		right: 30px;
+		top: 50%;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+		font-size: 15px;
+	}
+}
+
+#dropdown-problem-list {
+	border-radius: 5px;
+	border: 1px solid $beige;
+	background: transparent;
+	-webkit-appearance: none;
+	padding: 5px 60px 5px 13px;
+	@include ff(13,23,500);
+	@include r($M-) {
+		@include ff(12,20,500);
+		padding: 7px 60px 7px 15px;
+	}
+	& + i {
+		right: 14px;
+		width: 16px;
+		height: 16px;
+		line-height: 16px;
+		font-size: 15px;
+	}
+}
+
+.tables-title-list-wrap {
+	width: 100%;
+	border: none;
+	margin-bottom: 25px;
+	padding: 0 15px;
+	@include m($M) {
+		display: none;
+	}
+}
+
+#dropdown-tables-title-list {
+	@include ff(16,24,400);
+	padding: 16px 35px 16px 16px;
+	width: 100%;
+	& + i {
+		right: 25px;
+		line-height: 15px;
+		font-size: 15px;
+	}
+}
+
+#message-problem-field {
+	border: 1px solid $beige;
+	border-radius: 5px;
+	padding: 11px 15px;
+	@include ff(13,21,500);
+	margin-bottom: 20px;
+}
+
+.btn-submit-form {
+	border: none;
+	text-transform: uppercase;
+	color: $red;
+	width: auto;
+	@include ff(12,20,600);
+	margin: 4px 0 10px;
+	padding: 0;
+	&:hover {
+		background: transparent;
+		text-decoration: underline;
+		border-radius: 0;
+		color: $red;
+	}
+	&.btn-submit-popup-window {
+		margin: 0 0 0 30px;
+		padding: 15px 0;
+		@include ff(12,20,600);
+		@include r($M) {
+			padding: 25px 0;
+			margin: 0;
+			@include ff(12,20,600);
+			width: 100%;
+		}
+	}
+}
+
+.delivers-form {
+	padding: 8px 35px 40px;
+	@include r($M-) {
+		text-align: left;
+		padding: 0 15px 30px;
+	}
+	text-align: right;
+	.input-date-wrap {
+		position: relative;
+		@include r($M-) {
+			margin-bottom: 25px;
+		}
+		.input-date {
+			padding-left: 55px;
+		}
+		.calendar-icon {
+			position: absolute;
+			display: block;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 20px;
+			@include ff(15,15,700);
+			color: $text;
+		}
+	}
+}
+
+.input-custom-style {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid $beige;
+	border-radius: 5px;
+	padding: 11px 20px;
+	@include ff(13,21,500);
+	color: $text;
+}
+
+.btn-close-text-wrap {
+	text-align: center;
+	@include m($M) {
+		display: inline-block;
+	}
+}
+
+
+.btn-close-text {
+	display: inline-block;
+	@include ff(15,25,600);
+	padding: 10px 40px;
+	background-color: $w;
+	border-radius: 22px;
+	border: 1px solid $red;
+	color: $red;
+	text-transform: uppercase;
+	transition: all 0.3s ease-in-out 0s;
+	margin-left: 45px;
+	@include r ($M) {
+		margin: 10px 0 0;
+	}
+	&:hover {
+		background: $red;
+		color: $w;
+	}
+	&.btn-approve-text {
+		padding: 10px 27px;
+		@include m($M) {
+			margin-top: 0;
+		}
+		@include r($M-) {
+			margin-left: 0;
+		}
+		&.ml0 {
+			margin-left: 0;
+		}
+	}
+	&.btn-form-save {
+		margin-top: 40px;
+	}
+}
+
+.popup-btn-close {
+	position: absolute;
+	z-index: 999;
+	top: 19px;
+	right: 19px;
+	@include ff(12,20,400);
+	color: $text;
+	transform: rotate(45deg);
+	width: 16px;
+	height: 16px;
+	@include tr();
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		width: 16px;
+		height: 1px;
+		background: $b;
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 1px;
+		height: 16px;
+		background: $b;
+	}
+	&:hover {
+		color: $red;
+		cursor: pointer;
+		transform: rotate(135deg);
+	}
+	&.popup-container-btn-close {
+		top: 8px;
+		right: 8px;
+	}
+}
+
+.btn-trash {
+	border: none;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	&:hover {
+		background: transparent;
+	}
+}
