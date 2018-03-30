@@ -10,6 +10,8 @@ declare var $: any;
 })
 export class ImportComponent implements OnInit {
   currentSection = 'Containers';
+  containerProductImagesPopap = '';
+  containerProductDocumentsPopap = '';
   containerPop = '';
   productsPop = '';
   containers = [];
@@ -44,6 +46,9 @@ export class ImportComponent implements OnInit {
 
     this.apigClient.getImportContainerProductsList(id).then((result) => {
       this.containerProductsList = result;
+      this.containerProductsList.forEach((product) => {
+        this.loadProductResources(id, product.id, product);
+      });
     });
 
     this.apigClient.getContainerResourcesList(id).then((result) => {
@@ -101,10 +106,41 @@ export class ImportComponent implements OnInit {
     this.currentProductDocumentsPopap = false;
   }
 
+  loadProductResources(containerid, productid, product) {
+    this.apigClient.getImportContainerProductResources(containerid, productid).then((result) => {
+      product.documentsList = result.filter((r) => r.type === 'document');
+      product.imagesList = result.filter((r) => r.type === 'image');
+    });
+  }
+
+  openContainerProductImagesPopap(containerProduct) {
+    if (containerProduct.imagesList && containerProduct.imagesList.length) {
+      this.containerProductImagesPopap = containerProduct.id + containerProduct.hsCode;
+    }
+    this.containerProductDocumentsPopap = '';
+  }
+
+  closeContainerProductImagesPopap() {
+    this.containerProductImagesPopap = '';
+  }
+
+  openContainerProductDocumentsPopap(containerProduct) {
+    if (containerProduct.documentsList && containerProduct.documentsList.length) {
+      this.containerProductDocumentsPopap = containerProduct.id + containerProduct.hsCode;
+    }
+    this.containerProductImagesPopap = '';
+  }
+
+  closeContainerProductDocumentsPopap() {
+    this.containerProductDocumentsPopap = '';
+  }
+
   close() {
     setTimeout(() => {
       this.containerPop = '';
       this.productsPop = '';
+      this.containerProductDocumentsPopap = '';
+      this.containerProductImagesPopap = '';
       $('body').removeClass('no-scroll');
     }, 100);
   }

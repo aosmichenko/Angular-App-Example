@@ -16,6 +16,8 @@ export class ExportComponent implements OnInit {
   currentContainerDocumentsPopap = false;
   containerPop = '';
   shipmentsPop = '';
+  containerProductDocumentsPopap = '';
+  containerProductImagesPopap = '';
   containers = [];
   shipments = [];
   shipmentContainer;
@@ -104,6 +106,9 @@ export class ExportComponent implements OnInit {
 
     this.apigClient.getContainerProductsList(id).then((result) => {
       this.containerProductsList = result;
+      this.containerProductsList.forEach((product) => {
+        this.loadProductResources(id, product.id, product);
+      });
     });
 
     this.apigClient.getContainerResourcesList(id).then((result) => {
@@ -129,10 +134,41 @@ export class ExportComponent implements OnInit {
     });
   }
 
+  loadProductResources(containerid, productid, product) {
+    this.apigClient.getExportContainerProductResources(containerid, productid).then((result) => {
+      product.documentsList = result.filter((r) => r.type === 'document');
+      product.imagesList = result.filter((r) => r.type === 'image');
+    });
+  }
+
+  openContainerProductImagesPopap(containerProduct) {
+    if (containerProduct.imagesList && containerProduct.imagesList.length) {
+      this.containerProductImagesPopap = containerProduct.id + containerProduct.hsCode;
+    }
+    this.containerProductDocumentsPopap = '';
+  }
+
+  closeContainerProductImagesPopap() {
+    this.containerProductImagesPopap = '';
+  }
+
+  openContainerProductDocumentsPopap(containerProduct) {
+    if (containerProduct.documentsList && containerProduct.documentsList.length) {
+      this.containerProductDocumentsPopap = containerProduct.id + containerProduct.hsCode;
+    }
+    this.containerProductImagesPopap = '';
+  }
+
+  closeContainerProductDocumentsPopap() {
+    this.containerProductDocumentsPopap = '';
+  }
+
   close() {
     setTimeout(() => {
       this.containerPop = '';
       this.shipmentsPop = '';
+      this.containerProductDocumentsPopap = '';
+      this.containerProductImagesPopap = '';
       $('body').removeClass('no-scroll');
     }, 100);
 

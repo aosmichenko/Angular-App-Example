@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getShipment(shipmentid) {
-    return this.apigClient.v1ExportShipmentsShipmentidGet({shipmentid: shipmentid}).then((result) => {
+    return this.apigClient.v1ExportShipmentsShipmentidGet({shipmentid}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   getShipmentContainersList(shipmentid) {
-    return this.apigClient.v1ExportShipmentsShipmentidContainersGet({shipmentid: shipmentid}).then((result) => {
+    return this.apigClient.v1ExportShipmentsShipmentidContainersGet({shipmentid}).then((result) => {
       return result.data.containers;
     }, (error) => {
       console.log(error);
@@ -43,7 +43,7 @@ export class ApiService {
 
   setShipmentContainer(shipmentid, containerid) {
     const body = {'status': '3', 'containerid': containerid};
-    return this.apigClient.v1ExportShipmentsShipmentidPatch({shipmentid: shipmentid}, body).then((result) => {
+    return this.apigClient.v1ExportShipmentsShipmentidPatch({shipmentid}, body).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   removeProductFromContainer(containerid, productid) {
-    return this.apigClient.v1ExportContainersContaineridProductsProductidPatch({containerid: containerid, productid: productid}, {'status': '0'}).then((result) => {
+    return this.apigClient.v1ExportContainersContaineridProductsProductidPatch({containerid, productid}, {'status': '0'}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -59,7 +59,7 @@ export class ApiService {
   }
 
   getShipmentResourcesList(shipmentid) {
-    return this.apigClient.v1ExportShipmentsShipmentidResourcesGet({shipmentid: shipmentid}).then((result) => {
+    return this.apigClient.v1ExportShipmentsShipmentidResourcesGet({shipmentid}).then((result) => {
       return result.data.resources;
     }, (error) => {
       console.log(error);
@@ -67,7 +67,7 @@ export class ApiService {
   }
 
   getContainerResourcesList(containerid) {
-    return this.apigClient.v1ExportContainersContaineridResourcesGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ExportContainersContaineridResourcesGet({containerid}).then((result) => {
       return result.data.resources;
     }, (error) => {
       console.log(error);
@@ -75,7 +75,7 @@ export class ApiService {
   }
 
   getContainer(containerid) {
-    return this.apigClient.v1ExportContainersContaineridGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ExportContainersContaineridGet({containerid}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -83,7 +83,7 @@ export class ApiService {
   }
 
   getContainerProductsList(containerid) {
-    return this.apigClient.v1ExportContainersContaineridProductsGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ExportContainersContaineridProductsGet({containerid}).then((result) => {
       return result.data.products;
     }, (error) => {
       console.log(error);
@@ -91,7 +91,7 @@ export class ApiService {
   }
 
   setContainerClose(containerid) {
-    return this.apigClient.v1ExportContainersContaineridPatch({containerid: containerid}, {'status': '2'}).then((result) => {
+    return this.apigClient.v1ExportContainersContaineridPatch({containerid}, {'status': '2'}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -107,7 +107,7 @@ export class ApiService {
   }
 
   getImportContainer(containerid) {
-    return this.apigClient.v1ImportContainersContaineridGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ImportContainersContaineridGet({containerid}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -115,7 +115,7 @@ export class ApiService {
   }
 
   getImportContainerResourcesList(containerid) {
-    return this.apigClient.v1ImportContainersContaineridResourcesGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ImportContainersContaineridResourcesGet({containerid}).then((result) => {
       return result.data.resources;
     }, (error) => {
       console.log(error);
@@ -123,7 +123,7 @@ export class ApiService {
   }
 
   setContainerApprove(containerid) {
-    return this.apigClient.v1ImportContainersContaineridPatch({containerid: containerid}, {'status': '3'}).then((result) => {
+    return this.apigClient.v1ImportContainersContaineridPatch({containerid}, {'status': '3'}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -131,7 +131,7 @@ export class ApiService {
   }
 
   getImportContainerProductsList(containerid) {
-    return this.apigClient.v1ImportContainersContaineridProductsGet({containerid: containerid}).then((result) => {
+    return this.apigClient.v1ImportContainersContaineridProductsGet({containerid}).then((result) => {
       return result.data.products;
     }, (error) => {
       console.log(error);
@@ -147,7 +147,7 @@ export class ApiService {
   }
 
   getImportProduct(productid) {
-    return this.apigClient.v1ImportProductsProductidGet({productid: productid}).then((result) => {
+    return this.apigClient.v1ImportProductsProductidGet({productid}).then((result) => {
       return result.data.shipments;
     }, (error) => {
       console.log(error);
@@ -155,7 +155,7 @@ export class ApiService {
   }
 
   setProductApprove(productid) {
-    return this.apigClient.v1ImportProductsProductidPatch({productid: productid}, {'status': '3'}).then((result) => {
+    return this.apigClient.v1ImportProductsProductidPatch({productid}, {'status': '3'}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -163,7 +163,7 @@ export class ApiService {
   }
 
   getImportProductResourcesList(productid) {
-    return this.apigClient.v1ImportProductsProductidResourcesGet({productid: productid}).then((result) => {
+    return this.apigClient.v1ImportProductsProductidResourcesGet({productid}).then((result) => {
       return result.data.resources;
     }, (error) => {
       console.log(error);
@@ -179,7 +179,7 @@ export class ApiService {
   }
 
   getDelivery(deliveryid) {
-    return this.apigClient.v1LastmileDeliveriesDeliveryidGet({deliveryid: deliveryid}).then((result) => {
+    return this.apigClient.v1LastmileDeliveriesDeliveryidGet({deliveryid}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -187,7 +187,7 @@ export class ApiService {
   }
 
   setDeliverySave(deliveryid) {
-    return this.apigClient.v1LastmileDeliveriesDeliveryidPatch({deliveryid: deliveryid}, {'status': '2'}).then((result) => {
+    return this.apigClient.v1LastmileDeliveriesDeliveryidPatch({deliveryid}, {'status': '2'}).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);
@@ -195,7 +195,23 @@ export class ApiService {
   }
 
   getDeliveryResourcesList(deliveryid) {
-    return this.apigClient.v1LastmileDeliveriesDeliveryidResourcesGet({deliveryid: deliveryid}).then((result) => {
+    return this.apigClient.v1LastmileDeliveriesDeliveryidResourcesGet({deliveryid}).then((result) => {
+      return result.data.resources;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  getImportContainerProductResources(containerid, productid) {
+    return this.apigClient.v1ImportContainersContaineridProductsProductidResourcesGet({containerid, productid}).then((result) => {
+      return result.data.resources;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  getExportContainerProductResources(containerid, productid) {
+    return this.apigClient.v1ExportContainersContaineridProductsProductidResourcesGet({containerid, productid}).then((result) => {
       return result.data.resources;
     }, (error) => {
       console.log(error);
