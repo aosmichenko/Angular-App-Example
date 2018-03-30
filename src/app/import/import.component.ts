@@ -19,8 +19,8 @@ export class ImportComponent implements OnInit {
   containerProductsList = [];
   currentContainerDocumentsList = [];
   currentProductDocumentsList = [];
-  currentContainer = {};
-  currentProduct = {};
+  currentContainer: any = {};
+  currentProduct: any = {};
   currentContainerDocumentsPopap = false;
   currentProductProblemPopap = false;
   currentProductDocumentsPopap = false;
@@ -30,16 +30,24 @@ export class ImportComponent implements OnInit {
   ngOnInit() {
     this.apigClient.getImportContainers().then((result) => {
       this.containers = result;
+      this.containers.forEach((container) => {
+        container.eta = this.reformatDateStr(container.eta);
+      });
     });
 
     this.apigClient.getImportProductsList().then((result) => {
       this.products = result;
+      this.products.forEach((product) => {
+        product.arrivedDate = this.reformatDateStr(product.arrivedDate);
+        product.customsStatusDate = this.reformatDateStr(product.customsStatusDate);
+      });
     });
   }
 
   openContainerPop(id, s) {
     this.apigClient.getImportContainer(id).then((result) => {
       this.currentContainer = result;
+      this.currentContainer.eta = this.reformatDateStr(this.currentContainer.eta);
       this.containerPop = s;
       $('body').addClass('no-scroll');
     });
@@ -73,6 +81,8 @@ export class ImportComponent implements OnInit {
   openProductsPop(id, s) {
     this.apigClient.getImportProduct(id).then((result) => {
       this.currentProduct = result;
+      this.currentProduct.customsStatusDate = this.reformatDateStr(this.currentProduct.customsStatusDate);
+      this.currentProduct.arrivedDate = this.reformatDateStr(this.currentProduct.arrivedDate);
       this.productsPop = s;
       $('body').addClass('no-scroll');
     });
@@ -143,6 +153,14 @@ export class ImportComponent implements OnInit {
       this.containerProductImagesPopap = '';
       $('body').removeClass('no-scroll');
     }, 100);
+  }
+
+  reformatDateStr(dateStr) {
+    if (!dateStr) {
+      return dateStr;
+    }
+    const dateArr = dateStr.split('-');
+    return [dateArr[2], dateArr[0], dateArr[1]].join('-');
   }
 
 }
