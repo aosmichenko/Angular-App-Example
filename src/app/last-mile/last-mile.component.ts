@@ -25,9 +25,6 @@ export class LastMileComponent implements OnInit {
 
   openDeliveryPop(id, s) {
     this.apigClient.getDelivery(id).then((result) => {
-      if (result.scheduledDeliveryDate) {
-        result.scheduledDeliveryDate = result.scheduledDeliveryDate.split('-').reverse().join('-');
-      }
       this.currentDelivery = result;
       this.deliveryPop = s;
       $('body').addClass('no-scroll');

@@ -13,10 +13,10 @@ const routes: Routes = [
     path: 'export',
     component: ExportComponent
   },
-  // {
-  //   path: 'last-mile',
-  //   component: LastMileComponent
-  // },
+  {
+    path: 'last-mile',
+    component: LastMileComponent
+  },
   {
     path: 'import',
     component: ImportComponent
