@@ -34,18 +34,10 @@ export class ExportComponent implements OnInit {
   ngOnInit() {
     this.apigClient.getShipmentsList().then((result) => {
       this.shipments = result;
-      this.shipments.forEach((shipment) => {
-        shipment.expectedDate = this.reformatDateStr(shipment.expectedDate);
-        shipment.receivedDate = this.reformatDateStr(shipment.receivedDate);
-      });
     });
 
     this.apigClient.getContainers().then((result) => {
       this.containers = result;
-      this.containers.forEach((container) => {
-        container.closingDate = this.reformatDateStr(container.closingDate);
-        container.shippingDate = this.reformatDateStr(container.shippingDate);
-      });
     });
 
   }
@@ -53,18 +45,12 @@ export class ExportComponent implements OnInit {
   openShipmentsPop(id, s) {
     this.apigClient.getShipment(id).then((result) => {
       this.currentShipment = result;
-      this.currentShipment.expectedDate = this.reformatDateStr(this.currentShipment.expectedDate);
-      this.currentShipment.receivedDate = this.reformatDateStr(this.currentShipment.receivedDate);
       this.shipmentsPop = s;
       $('body').addClass('no-scroll');
     });
 
     this.apigClient.getShipmentContainersList(id).then((result) => {
       this.shipmentContainersList = result;
-      this.shipmentContainersList.forEach((container) => {
-        container.closingDate = this.reformatDateStr(container.closingDate);
-        container.shippingDate = this.reformatDateStr(container.shippingDate);
-      });
     });
 
     this.apigClient.getShipmentResourcesList(id).then((result) => {
@@ -114,8 +100,6 @@ export class ExportComponent implements OnInit {
   openContainerPop(id, s) {
     this.apigClient.getContainer(id).then((result) => {
       this.currentContainer = result;
-      this.currentContainer.closingDate = this.reformatDateStr(this.currentContainer.closingDate);
-      this.currentContainer.shippingDate = this.reformatDateStr(this.currentContainer.shippingDate);
       this.containerPop = s;
       $('body').addClass('no-scroll');
     });
@@ -188,11 +172,6 @@ export class ExportComponent implements OnInit {
       $('body').removeClass('no-scroll');
     }, 100);
 
-  }
-
-  reformatDateStr(dateStr) {
-    const dateArr = dateStr.split('-');
-    return [dateArr[2], dateArr[0], dateArr[1]].join('-');
   }
 
 }

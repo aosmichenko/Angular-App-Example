@@ -26,6 +26,132 @@
 
 <!-- DELIVERIES SECTION -->
 
+<section class="tables-wrap deliveries">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="tables-title">DELIVERIES</h3>
 
+        <!-- DELIVERIES TABLE -->
+
+        <div class="table">
+
+          <!-- TABLE ROW -->
+
+          <div class="tr tr-main-table bg-light-grey">
+            <div class="th w-13">CUSTOMER</div>
+            <div class="th w-12">DELIVERY ADDRESS</div>
+            <div class="th w-10">PRODUCT</div>
+            <div class="th w-15">CODE</div>
+            <div class="th w-12">DELIVERY RANGE</div>
+            <div class="th w-11">DELIVERY STATUS</div>
+            <div class="th w-13">SCHEDULED DELIVERY DATE</div>
+            <div class="th w-6">№</div>
+            <div class="th w-8">DELIVERY REMARKS</div>
+          </div>
+
+          <!-- /TABLE ROW -->
+
+          <!-- TABLE ROW -->
+
+          <div class="tr tr-main-table"
+               *ngFor="let delivery of deliveries"
+               (click)="openDeliveryPop(delivery.id, delivery.id + delivery.code)"
+               [ngClass]="{'open': deliveryPop === (delivery.id + delivery.code)}">
+            <div class="td w-13 customer"><span>{{delivery.customer}}</span></div>
+            <div class="td w-12 delivery-address"><span>{{delivery.address1}} {{delivery.city}}</span></div>
+            <div class="td w-10 product"><span>{{delivery.product}}</span></div>
+            <div class="td w-15 code"><span>{{delivery.code}}</span></div>
+            <div class="td w-12 delivery-range">
+              <span>{{delivery.deliveryDateRangeFrom | date:'MMM d y'}} – {{delivery.deliveryDateRangeTo | date:'MMM d y'}}</span>
+            </div>
+            <div class="td w-11 delivery-status"><span>{{delivery.status}}</span></div>
+            <div class="td w-13 scheduled-delivery-date"><span>{{delivery.scheduledDeliveryDate | date:'MMM d y'}}</span></div>
+            <div class="td w-6 number"><span>1</span></div>
+            <div class="td w-8 delivery-remarks">
+              <span *ngIf="delivery.deliveryRemarks"><i class="fas fa-exclamation-triangle icon-style"></i></span>
+            </div>
+
+            <!-- TABLES POPUP -->
+
+            <div class="popup-window popup-containers-section popup-deliveries-section" (click)="$event.stopPropagation()">
+              <div class="info-bar">
+                <div class="container-cell">{{currentDelivery.customer}}</div>
+                <div class="delivery-address-popup-cell">{{currentDelivery.address1 + ' ' + currentDelivery.city}}</div>
+                <div class="delivery-status-popup-cell">DELIVERY STATUS: <span class="color-red">{{currentDelivery.status}}</span></div>
+                <div class="icon-list">
+                  <div class="icon-popup-container-wrap" [class.active]="currentDeliveryDocumentsPopap">
+                    <i class="fas fa-file-alt" (click)="openDeliveryDocumentsPopap()"></i>
+                    <div class="popup-container photo-popup popup-container-pos-r" [class.open]="currentDeliveryDocumentsPopap">
+                      <span class="title-popup">Invoice</span>
+                      <div class="download-img" *ngFor="let document of currentDeliveryDocumentsList">
+                        <img [src]="document.img" [alt]="document.title">
+                        <div class="overlay">
+                          <i class="fas fa-cloud-download-alt"></i>
+                        </div>
+                      </div>
+                      <span class="upload-new">Upload new</span>
+                      <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                      </div>
+                      <div class="popup-btn-close popup-container-btn-close" (click)="closeDeliveryDocumentsPopap()"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-popup container-table-popup">
+                <div class="tr tr-table-popup">
+                  <div class="th">PRODUCT</div>
+                  <div class="th">CODE</div>
+                  <div class="th">DELIVERY RANGE</div>
+                  <div class="th">№</div>
+                </div>
+                <div class="tr tr-table-popup">
+                  <div class="td product"><span>{{currentDelivery.product}}</span></div>
+                  <div class="td code"><span>{{currentDelivery.code}}</span></div>
+                  <div class="td delivery-range">
+                    <span>{{currentDelivery.deliveryDateRangeFrom | date:'MMM d y'}} – {{currentDelivery.deliveryDateRangeTo | date:'MMM d y'}}</span>
+                  </div>
+                  <div class="td number-popup-cell"><span>1</span></div>
+                </div>
+              </div>
+              <form action="#" method="post" class="delivers-form">
+                <div class="row">
+                  <div class="col-md-4">
+                    <h6 class="data-input-title">Scheduled delivery date</h6>
+                    <label class="input-date-wrap">
+                      <input type="date" [(ngModel)]="currentDelivery.scheduledDeliveryDate" name="scheduled-delivery" class="input-date input-custom-style"><i class="far fa-calendar-alt calendar-icon"></i>
+                    </label>
+                  </div>
+                  <div class="col-md-8">
+                    <h6 class="data-input-title">Delivery remarks</h6>
+                    <input type="text" class="input-custom-style" name="delivery-remarks" [(ngModel)]="currentDelivery.deliveryRemarks">
+                  </div>
+                </div>
+                <div class="btn-close-text-wrap">
+                  <button class="btn-close-text btn-form-save"
+                          [disabled]="!currentDelivery.scheduledDeliveryDate?.length"
+                          (click)="saveDelivery(currentDelivery['id'])"
+                  >save</button>
+                </div>
+              </form>
+              <div class="cf"></div>
+              <div class="popup-btn-close close-container-btn" (click)="close()"></div>
+            </div>
+
+            <!-- /TABLE POPUP -->
+
+          </div>
+
+          <!-- /TABLE ROW -->
+
+        </div>
+
+        <!-- /DELIVERIES TABLE -->
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- /DELIVERIES SECTION -->
