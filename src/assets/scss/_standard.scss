@@ -30,6 +30,11 @@ body {
 	//max-width: 1920px;
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
+  &.no-scroll {
+    position: fixed;
+    overflow: hidden;
+    height: 100%;
+  }
 }
 article,
 aside,
@@ -211,10 +216,6 @@ p {
 	color: $text;
 	font-family: $saira;
 	@include ff(13, 21, 500);
-}
-
-body.no-scroll {
-	overflow: hidden;
 }
 h1,
 h2,

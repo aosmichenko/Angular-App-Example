@@ -12,6 +12,13 @@
 }
 
 .tables-wrap {
+  @include r($M-) {
+    display: none;
+    &.active,
+    &.deliveries {
+      display: block;
+    }
+  }
 	.tables-title {
 		margin-bottom: 30px;
 		@include r($M-) {
