@@ -101,6 +101,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportContainersOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ExportContainersContaineridGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -137,6 +155,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportContainersContaineridOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersContaineridOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers/{containerid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersContaineridOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ExportContainersContaineridProductsGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -152,6 +188,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ExportContainersContaineridProductsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ExportContainersContaineridProductsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersContaineridProductsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers/{containerid}/products').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersContaineridProductsOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -191,6 +245,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportContainersContaineridProductsProductidOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersContaineridProductsProductidOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers/{containerid}/products/{productid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersContaineridProductsProductidOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ExportContainersContaineridProductsProductidResourcesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -206,6 +278,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ExportContainersContaineridProductsProductidResourcesGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ExportContainersContaineridProductsProductidResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersContaineridProductsProductidResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers/{containerid}/products/{productid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersContaineridProductsProductidResourcesOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -227,6 +317,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportContainersContaineridResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportContainersContaineridResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/containers/{containerid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportContainersContaineridResourcesOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ExportShipmentsGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -242,6 +350,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ExportShipmentsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ExportShipmentsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportShipmentsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/shipments').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportShipmentsOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -281,6 +407,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportShipmentsShipmentidOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportShipmentsShipmentidOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/shipments/{shipmentid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportShipmentsShipmentidOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ExportShipmentsShipmentidContainersGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -296,6 +440,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ExportShipmentsShipmentidContainersGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ExportShipmentsShipmentidContainersOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportShipmentsShipmentidContainersOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/shipments/{shipmentid}/containers').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportShipmentsShipmentidContainersOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -317,6 +479,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ExportShipmentsShipmentidResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ExportShipmentsShipmentidResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/export/shipments/{shipmentid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ExportShipmentsShipmentidResourcesOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ImportContainersGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -332,6 +512,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ImportContainersGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportContainersOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -371,6 +569,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ImportContainersContaineridOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ImportContainersContaineridProductsGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -386,6 +602,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ImportContainersContaineridProductsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportContainersContaineridProductsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridProductsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/products').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridProductsOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -425,6 +659,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ImportContainersContaineridProductsProductidOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridProductsProductidOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/products/{productid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridProductsProductidOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ImportContainersContaineridProductsProductidResourcesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -440,6 +692,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ImportContainersContaineridProductsProductidResourcesGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportContainersContaineridProductsProductidResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridProductsProductidResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/products/{productid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridProductsProductidResourcesOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -461,6 +731,60 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ImportContainersContaineridResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridResourcesOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportContainersContaineridWhlocationsGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['containerid'], ['body']);
+        
+        var v1ImportContainersContaineridWhlocationsGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/whlocations').expand(apiGateway.core.utils.parseParametersToObject(params, ['containerid'])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridWhlocationsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportContainersContaineridWhlocationsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportContainersContaineridWhlocationsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/containers/{containerid}/whlocations').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportContainersContaineridWhlocationsOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ImportProductsGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -476,6 +800,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1ImportProductsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1ImportProductsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportProductsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/products').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportProductsOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -515,6 +857,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ImportProductsProductidOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportProductsProductidOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/products/{productid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportProductsProductidOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1ImportProductsProductidResourcesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -533,6 +893,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1ImportProductsProductidResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1ImportProductsProductidResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/import/products/{productid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1ImportProductsProductidResourcesOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1LastmileDeliveriesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -548,6 +926,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1LastmileDeliveriesGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1LastmileDeliveriesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1LastmileDeliveriesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/lastmile/deliveries').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1LastmileDeliveriesOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
     
@@ -587,6 +983,24 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.v1LastmileDeliveriesDeliveryidOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1LastmileDeliveriesDeliveryidOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/lastmile/deliveries/{deliveryid}').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1LastmileDeliveriesDeliveryidOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.v1LastmileDeliveriesDeliveryidResourcesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -602,6 +1016,24 @@ apigClientFactory.newClient = function (config) {
         
         
         return apiGatewayClient.makeRequest(v1LastmileDeliveriesDeliveryidResourcesGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.v1LastmileDeliveriesDeliveryidResourcesOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var v1LastmileDeliveriesDeliveryidResourcesOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/v1/lastmile/deliveries/{deliveryid}/resources').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(v1LastmileDeliveriesDeliveryidResourcesOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
 

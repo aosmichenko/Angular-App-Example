@@ -122,8 +122,8 @@ export class ExportComponent implements OnInit {
     });
   }
 
-  closeContainer(id) {
-    this.apigClient.setContainerClose(id).then((result) => {
+  closeContainer(container) {
+    this.apigClient.setContainerClose(container.id, container.number, container.sealNumber, container.BOLNumber, container.size).then((result) => {
       console.log(result);
     });
   }
@@ -171,6 +171,13 @@ export class ExportComponent implements OnInit {
       this.containerProductImagesPopap = '';
       $('body').removeClass('no-scroll');
     }, 100);
+
+  }
+
+  getTotalValue(packages = []) {
+    return '$' + packages.reduce((totalValue, item) => {
+      return totalValue + (item.value ? +item.value.replace('$', '') : 0);
+    }, 0);
 
   }
 

@@ -90,8 +90,15 @@ export class ApiService {
     });
   }
 
-  setContainerClose(containerid) {
-    return this.apigClient.v1ExportContainersContaineridPatch({containerid}, {'status': '2'}).then((result) => {
+  setContainerClose(containerid, number, sealNumber, BOLNumber, size) {
+    const body = {
+      'status': '2',
+      'number': number,
+      'sealNumber': sealNumber,
+      'size': size,
+      'BOLNumber': BOLNumber
+    };
+    return this.apigClient.v1ExportContainersContaineridPatch({containerid}, body).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);

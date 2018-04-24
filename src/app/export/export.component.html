@@ -41,13 +41,14 @@
           <!-- TABLE ROW -->
 
           <div class="tr tr-main-table bg-light-grey">
-            <div class="th max-w-20">EXPECTED DATE</div>
-            <div class="th max-w-12">SENDER</div>
-            <div class="th max-w-12">SHIPPER</div>
+            <div class="th max-w-10">EXPECTED DATE</div>
+            <div class="th max-w-10">SENDER</div>
+            <div class="th max-w-10">SHIPPER</div>
             <div class="th max-w-19">CODE</div>
             <div class="th max-w-8">№</div>
+            <div class="th max-w-16">CUSTOMER NAME</div>
             <div class="th max-w-17">DESTINATION</div>
-            <div class="th max-w-12">CONTAINER</div>
+            <div class="th max-w-10">CONTAINER</div>
           </div>
 
           <!-- /TABLE ROW -->
@@ -58,13 +59,14 @@
                (click)="openShipmentsPop(shipment.id, shipment.id + shipment.code)"
                [ngClass]="{'open': shipmentsPop === (shipment.id + shipment.code)}">
 
-            <div class="td  max-w-20 expected-date"><span>{{shipment.expectedDate | date:'MMM d y'}}</span></div>
-            <div class="td  max-w-12 sender"><span>{{shipment.sender}}</span></div>
-            <div class="td  max-w-12 shipper"><span>{{shipment.shipper}}</span></div>
+            <div class="td  max-w-10 expected-date"><span>{{shipment.expectedDate | date:'MMM d y'}}</span></div>
+            <div class="td  max-w-10 sender"><span>{{shipment.sender}}</span></div>
+            <div class="td  max-w-10 shipper"><span>{{shipment.shipper}}</span></div>
             <div class="td  max-w-19 code"><span>{{shipment.code}}</span></div>
             <div class="td  max-w-8 number"><span>{{shipment.id}}</span></div>
+            <div class="td  max-w-16 customer-name"><span>{{shipment.customer}}</span></div>
             <div class="td  max-w-17 destination"><span>{{shipment.destination}}</span></div>
-            <div class="td  max-w-12 container-th"><span>{{shipment.container}}</span></div>
+            <div class="td  max-w-10 container-th"><span>{{shipment.trip}}</span></div>
 
             <!-- TABLES POPUP -->
 
@@ -137,19 +139,22 @@
                   <div class="th">HS CODE:</div>
                   <div class="th">№</div>
                   <div class="th">WEIGHT:</div>
-                  <div class="th tar-m">VOLUME:</div>
+                  <div class="th">VOLUME:</div>
+                  <div class="th tar-m">VALUE:</div>
                 </div>
                 <div class="tr tr-table-popup" *ngFor="let package of currentShipment['packages']">
                   <div class="td product"><span>{{currentShipment['product']}}</span></div>
                   <div class="td hs-code"><span>{{currentShipment['hsCode']}}</span></div>
                   <div class="td number-popup-cell"><span>1</span></div>
                   <div class="td weight"><span>{{package['weight']}}</span></div>
-                  <div class="td volume tar-m"><span>{{package['volume']}}</span></div>
+                  <div class="td volume"><span>{{package['volume']}}</span></div>
+                  <div class="td value tar-m"><span>{{package['value']}}</span></div>
                 </div>
               </div>
               <div class="total-line">
                 <p class="total-value">TOTAL WEIGHT: <span>28 kg</span></p>
                 <p class="total-value">TOTAL VOLUME: <span>0,62 cbm</span></p>
+                <p class="total-value">TOTAL VALUE: <span>{{getTotalValue(currentShipment['packages'])}}</span></p>
               </div>
               <div class="cf"></div>
               <div class="footer-line">
@@ -158,7 +163,7 @@
                     <select id="dropdown-product-info" class="select-de"
                             [(ngModel)]="shipmentContainer" name="product-info">
                       <option *ngFor="let shipmentContainer of shipmentContainersList" [value]="shipmentContainer.id">
-                        {{shipmentContainer.number + ' (Closing: ' + shipmentContainer.closingDate + ' Shipping: ' + shipmentContainer.shippingDate + ')'}}
+                        {{shipmentContainer.trip + ' (Last receiving date: ' + shipmentContainer.lastReceivingDate + ' Loading date: ' + shipmentContainer.loadingDate + ')'}}
                       </option>
                     </select>
                     <i class="fas fa-chevron-down"></i>
@@ -212,8 +217,8 @@
             <div class="th max-w-18">NUMBER</div>
             <div class="th max-w-11">STATUS</div>
             <div class="th max-w-9">SIZE</div>
-            <div class="th max-w-14">CLOSING DATE</div>
-            <div class="th max-w-15">SHIPPING DATE</div>
+            <div class="th max-w-14">LAST RECEIVING DATE</div>
+            <div class="th max-w-15">LOADING DATE</div>
             <div class="th max-w-14">DESTINATION</div>
             <div class="th max-w-11">% FILLED</div>
             <div class="th max-w-8">№</div>
@@ -227,11 +232,11 @@
                *ngFor="let container of containers"
                (click)="openContainerPop(container.id, container.id + container.number)"
                [ngClass]="{'open': containerPop === (container.id + container.number)}">
-            <div class="td  max-w-18 number-containers-table"><span>{{container.number}}</span></div>
+            <div class="td  max-w-18 number-containers-table"><span>{{container.trip}}</span></div>
             <div class="td  max-w-11 status"><span>{{container.status}}</span></div>
             <div class="td  max-w-9 size"><span>{{container.size}}</span></div>
-            <div class="td  max-w-14 closing-date"><span>{{container.shippingDate | date:'MMM d y'}}</span></div>
-            <div class="td  max-w-15 shipping-date"><span>{{container.shippingDate | date:'MMM d y'}}</span></div>
+            <div class="td  max-w-14 closing-date"><span>{{container.lastReceivingDate | date:'MMM d y'}}</span></div>
+            <div class="td  max-w-15 shipping-date"><span>{{container.loadingDate | date:'MMM d y'}}</span></div>
             <div class="td  max-w-14 destination"><span>{{container.destination}}</span></div>
             <div class="td  max-w-11 filled"><span>{{container.fillRate}}</span></div>
             <div class="td  max-w-8 number"><span>{{container.numPackages}}</span></div>
@@ -240,7 +245,11 @@
 
             <div class="popup-window popup-containers-section" (click)="$event.stopPropagation()">
               <div class="info-bar">
-                <div class="container-cell">CONTAINERS <span>{{container.number}}</span></div>
+                <div class="container-cell">
+                  <span>{{container.trip + ' (' +
+                    (container.lastReceivingDate ? 'Last receiving date: ' + container.lastReceivingDate : '') +
+                    (container.loadingDate ? ' Loading date: ' + container.loadingDate : '') + ')'}}</span>
+                </div>
                 <div class="icon-list">
                   <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
                     <i class="fas fa-file-alt" (click)="openContainerDocumentsPopap()"></i>
@@ -260,26 +269,59 @@
                     </div>
                   </div>
                 </div>
-                <div class="btn-close-text-wrap">
-                  <button (click)="closeContainer(container.id)" type="button" class="btn-close-text">CLOSE CONTAINER</button>
+
+                <div class="container-cell">
+                  <select [(ngModel)]="container.size" name="container-size" class="select-de">
+                    <option value="40 ft HC">40 ft HC</option>
+                    <option value="40 ft">40 ft</option>
+                    <option value="20 ft">20 ft</option>
+                  </select>
                 </div>
+
+                <div class="btn-close-text-wrap">
+                  <button
+                    [disabled]="!container.size || !container.number || !container.sealNumber || !container.BOLNumber"
+                    (click)="closeContainer(container)"
+                    type="button" class="btn-close-text">CLOSE</button>
+                </div>
+
+                <div class="container-cell">
+                  <input type="text" class="input-custom-style" placeholder="Container Number" name="container-number" [(ngModel)]="container.number">
+                </div>
+
+                <div class="container-cell">
+                  <input type="text" class="input-custom-style" placeholder="Seal Number" name="container-seal-number" [(ngModel)]="container.sealNumber">
+                </div>
+
+                <div class="container-cell">
+                  <input type="text" class="input-custom-style" placeholder="Bill of lading Number" name="container-bol-number" [(ngModel)]="container.BOLNumber">
+                </div>
+
               </div>
               <div class="table-popup container-table-popup">
                 <div class="tr tr-table-popup">
                   <div class="th">VESSEL</div>
-                  <div class="th">IMO</div>
-                  <div class="th">MMSI</div>
+                  <div class="th">AGENT NUMBER</div>
+                  <div class="th">SHIPPER NUMBER</div>
                   <div class="th">№</div>
+                  <div class="th">VESSEL TRIP</div>
                   <div class="th cell-total-heading">TOTAL WEIGHT</div>
                   <div class="th cell-total-heading">TOTAL VOLUME</div>
+                  <div class="th cell-total-heading">TOTAL VALUE</div>
                 </div>
                 <div class="tr tr-table-popup">
                   <div class="td vessel"><span>{{container.vessel?.name}}</span></div>
-                  <div class="td imo"><span>{{container.vessel?.IMO}}</span></div>
-                  <div class="td mmsi"><span>{{container.vessel?.MMSI}}</span></div>
+                  <div class="td agent-number"><span>{{container.vessel?.agentNumber}}</span></div>
+                  <div class="td shippeer-number"><span>{{container.vessel?.shippeerNumber}}</span></div>
                   <div class="td number-popup-cell"><span>{{container.numPackages}}</span></div>
+                  <div class="td trip-number">
+                    <ng-container *ngIf="container.vessel">
+                      <input type="text" class="input-custom-style" name="vessel-trip-number" [(ngModel)]="container.vessel.tripNumber">
+                    </ng-container>
+                  </div>
                   <div class="td total-weight cell-total-value"><span>{{container.totalWeight}}</span></div>
                   <div class="td total-volume cell-total-value"><span>{{container.totalVolume}}</span></div>
+                  <div class="td total-volume cell-total-value"><span> </span></div>
                 </div>
               </div>
               <p class="container-table-popup-heading">PACKAGES 1</p>
