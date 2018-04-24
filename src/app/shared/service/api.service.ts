@@ -121,6 +121,14 @@ export class ApiService {
     });
   }
 
+  getWhlocations(containerid) {
+    return this.apigClient.v1ImportContainersContaineridWhlocationsGet({containerid}).then((result) => {
+      return result.data.whlocations;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   getImportContainerResourcesList(containerid) {
     return this.apigClient.v1ImportContainersContaineridResourcesGet({containerid}).then((result) => {
       return result.data.resources;
@@ -129,8 +137,13 @@ export class ApiService {
     });
   }
 
-  setContainerApprove(containerid) {
-    return this.apigClient.v1ImportContainersContaineridPatch({containerid}, {'status': '3'}).then((result) => {
+  setContainerApprove(containerid, manifestNumber, whId) {
+    const body = {
+      'status': '3',
+      'manifestNumber': manifestNumber,
+      'wh': {'id': whId}
+    };
+    return this.apigClient.v1ImportContainersContaineridPatch({containerid}, body).then((result) => {
       return result.data;
     }, (error) => {
       console.log(error);

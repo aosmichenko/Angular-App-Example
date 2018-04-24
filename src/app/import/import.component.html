@@ -42,10 +42,11 @@
           <div class="tr tr-main-table bg-light-grey">
             <div class="th max-w-20">NUMBER</div>
             <div class="th max-w-15">VESSEL</div>
-            <div class="th max-w-13">SIZE</div>
-            <div class="th max-w-16">ETA</div>
-            <div class="th max-w-15">ORIGIN</div>
-            <div class="th max-w-11">№</div>
+            <div class="th max-w-10">SIZE</div>
+            <div class="th max-w-10">ETA</div>
+            <div class="th max-w-10">ORIGIN</div>
+            <div class="th max-w-15">TOTAL WEIGHT</div>
+            <div class="th max-w-10">№</div>
             <div class="th max-w-10">STATUS</div>
           </div>
 
@@ -59,59 +60,84 @@
                [ngClass]="{'open': containerPop === (container.id + container.number)}">
             <div class="td  max-w-20 number-text"><span>{{container.number}}</span></div>
             <div class="td  max-w-15 vessel"><span>{{container.vessel?.name}}</span></div>
-            <div class="td  max-w-13 size"><span>{{container.size}}</span></div>
-            <div class="td  max-w-16 eta"><span>{{container.eta | date:'MMM d y'}}</span></div>
-            <div class="td  max-w-15 origin"><span>{{container.origin}}</span></div>
-            <div class="td  max-w-11 number"><span>{{container.numPackages}}</span></div>
+            <div class="td  max-w-10 size"><span>{{container.size}}</span></div>
+            <div class="td  max-w-10 eta"><span>{{container.eta | date:'MMM d y'}}</span></div>
+            <div class="td  max-w-10 origin"><span>{{container.origin}}</span></div>
+            <div class="td  max-w-15 total-weight"><span>{{container.totalWeight}}</span></div>
+            <div class="td  max-w-10 number"><span>{{container.customerNumber}}</span></div>
             <div class="td  max-w-10 status"><span class="color-red">{{container.status}}</span></div>
 
             <!-- TABLES POPUP -->
 
             <div class="popup-window popup-containers-section" (click)="$event.stopPropagation()">
               <div class="info-bar">
-                <div class="container-cell">CONTAINERS <span>{{currentContainer['number']}}</span></div>
-                <div class="icon-list">
-                  <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
-                    <i class="fas fa-file-alt" (click)="openContainerDocumentsPopap()"></i>
-                    <div class="popup-container photo-popup popup-container-pos-r" [class.open]="currentContainerDocumentsPopap">
-                      <span class="title-popup">Invoice</span>
-                      <div class="download-img" *ngFor="let document of currentContainerDocumentsList">
-                        <img [src]="document.img" [alt]="document.title">
-                        <div class="overlay">
-                          <i class="fas fa-cloud-download-alt"></i>
+                <div class="container-cell">
+                  <div class="container-cell">CONTAINERS <span>{{currentContainer['number']}}</span></div>
+                  <div class="icon-list">
+                    <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
+                      <i class="fas fa-file-alt" (click)="openContainerDocumentsPopap()"></i>
+                      <div class="popup-container photo-popup popup-container-pos-r" [class.open]="currentContainerDocumentsPopap">
+                        <span class="title-popup">Invoice</span>
+                        <div class="download-img" *ngFor="let document of currentContainerDocumentsList">
+                          <img [src]="document.img" [alt]="document.title">
+                          <div class="overlay">
+                            <i class="fas fa-cloud-download-alt"></i>
+                          </div>
                         </div>
+                        <span class="upload-new">Upload new</span>
+                        <div class="upload-icon">
+                          <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerDocumentsPopap()"></div>
                       </div>
-                      <span class="upload-new">Upload new</span>
-                      <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                      </div>
-                      <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerDocumentsPopap()"></div>
                     </div>
                   </div>
+                  <div>
+                    <span>{{currentContainer['size']}}</span>
+                    <span>{{currentContainer['sealNumber']}}</span>
+                    <span>{{currentContainer['BOLNumber']}}</span>
+                  </div>
+                </div>
+                <div class="container-cell">
+                  <input type="text" class="input-custom-style" placeholder="Manifest Number" name="container-manifest-number" [(ngModel)]="currentContainer['manifestNumber']">
+                </div>
+                <div class="container-cell">
+                  <ng-container *ngIf="currentContainer.wh">
+                    <select [(ngModel)]="currentContainer.wh.id" name="container-size" class="select-de">
+                      <option *ngFor="let whlocation of currentContainerWhlocations"
+                              value="{{whlocation.id}}">{{whlocation.name}}</option>
+                    </select>
+                  </ng-container>
                 </div>
                 <div class="btn-close-text-wrap">
-                  <button (click)="approveContainer(currentContainer['id'])" type="button" class="btn-close-text btn-approve-text">approve</button>
+                  <button [disabled]="!currentContainer.wh?.id || !currentContainer.manifestNumber"
+                          (click)="approveContainer(currentContainer)" type="button" class="btn-close-text btn-approve-text">approve</button>
                 </div>
               </div>
+
               <div class="table-popup container-table-popup">
                 <div class="tr tr-table-popup">
                   <div class="th">VESSEL</div>
-                  <div class="th">IMO</div>
-                  <div class="th">MMSI</div>
+                  <div class="th">AGENT NUMBER</div>
+                  <div class="th">SHIPPER NUMBER</div>
                   <div class="th">№</div>
+                  <div class="th">VESSEL TRIP</div>
                   <div class="th cell-total-heading">TOTAL WEIGHT</div>
                   <div class="th cell-total-heading">TOTAL VOLUME</div>
+                  <div class="th cell-total-heading">TOTAL VALUE</div>
                 </div>
                 <div class="tr tr-table-popup">
                   <div class="td vessel"><span>{{currentContainer['vessel']?.name}}</span></div>
-                  <div class="td imo"><span>{{currentContainer['vessel']?.IMO}}</span></div>
-                  <div class="td mmsi"><span>{{currentContainer['vessel']?.MMSI}}</span></div>
+                  <div class="td agent-number"><span>{{currentContainer['vessel']?.agentNumber}}</span></div>
+                  <div class="td shipper-number"><span>{{currentContainer['vessel']?.shippeerNumber}}</span></div>
                   <div class="td number-popup-cell"><span>{{currentContainer['numPackages']}}</span></div>
+                  <div class="td vessel-trip"><span>{{currentContainer['vessel']?.tripNumber}}</span></div>
                   <div class="td total-weight cell-total-value"><span>{{currentContainer['totalWeight']}}</span></div>
                   <div class="td total-volume cell-total-value"><span>{{currentContainer['totalVolume']}}</span></div>
+                  <div class="td total-volume cell-total-value"><span>{{currentContainer['totalValue']}}</span></div>
                 </div>
               </div>
-              <p class="container-table-popup-heading">PACKAGES 1</p>
+
               <div class="table-popup container-table-popup table-popup-with-total-line">
                 <div class="tr tr-table-popup">
                   <div class="th">PRODUCT</div>
@@ -222,14 +248,16 @@
           <!-- TABLES ROW -->
 
           <div class="tr tr-main-table bg-dark-grey">
+            <div class="th max-w-16">CUSTOMER NAME</div>
+            <div class="th max-w-13">DESTINATION</div>
             <div class="th max-w-16">ARRIVED DATE</div>
             <div class="th max-w-9">SENDER</div>
             <div class="th max-w-8">ORIGIN</div>
             <div class="th max-w-16">CODE</div>
             <div class="th max-w-6">№</div>
-            <div class="th max-w-13">DESTINATION</div>
             <div class="th max-w-15">CUSTOMS STATUS</div>
             <div class="th max-w-11">HS CODE</div>
+            <div class="th max-w-6">TOTAL VALUE</div>
             <div class="th max-w-6">TAXES</div>
           </div>
 
@@ -240,22 +268,28 @@
           <div *ngFor="let product of products" class="tr tr-main-table"
                (click)="openProductsPop(product.id, product.id + product.code)"
                [ngClass]="{'open': productsPop === (product.id + product.code)}">
+            <div class="td  max-w-16 customer"><span>{{product.customer}}</span></div>
+            <div class="td  max-w-13 destination"><span>{{product.destination}}</span></div>
             <div class="td  max-w-16 arrived-date"><span>{{product.arrivedDate | date:'MMM d y'}}</span></div>
             <div class="td  max-w-9 sender"><span>{{product.sender}}</span></div>
             <div class="td  max-w-8 origin"><span>{{product.origin}}</span></div>
             <div class="td  max-w-16 code"><span>{{product.code}}</span></div>
             <div class="td  max-w-6 number"><span>1</span></div>
-            <div class="td  max-w-13 destination"><span>{{product.destination}}</span></div>
             <div class="td  max-w-15 customs-status"><span>{{product.customsStatus}} {{product.customsStatusDate | date:'MMM d y'}}</span></div>
             <div class="td  max-w-11 hs-code"><span>{{product.hsCode}}</span></div>
+            <div class="td  max-w-6 total-value"><span>{{product.totalValue}}</span></div>
             <div class="td  max-w-6 taxes"><span>{{product.taxes}}</span></div>
 
             <!-- TABLES POPUP -->
 
             <div class="popup-window popup-incoming-shipment popup-window-width-770" (click)="$event.stopPropagation()">
               <div class="info-bar info-bar-products">
-                <div class="date-cell">{{currentProduct['arrivedDate'] | date:'MMM d y'}}</div>
-                <div class="container-cell"><span>{{currentProduct['sender']}}</span>|<span>{{currentProduct['origin']}}</span></div>
+                <div class="date-cell">
+                  {{currentProduct['customer']}}
+                  <div>{{currentProduct['destination']}}</div>
+                </div>
+                <div class="container-cell"><span>{{currentProduct['customerID']}}</span></div>
+                <div class="container-cell"><span>{{currentProduct['customerEmail']}}</span></div>
                 <ul class="icon-list">
                   <li>
                     <div class="icon-popup-container-wrap" [class.active]="currentProductDocumentsPopap">
@@ -295,6 +329,7 @@
                     </div>
                   </li>
                 </ul>
+                <div class="container-cell"><span>{{getTotalValue(currentProduct['packages'])}}</span></div>
                 <div class="btn-close-text-wrap">
                   <button (click)="approveProduct(currentProduct['id'])" type="button" class="btn-close-text btn-approve-text ml0">approve</button>
                 </div>
@@ -304,22 +339,23 @@
                   <div class="th">PRODUCT:</div>
                   <div class="th">HS CODE:</div>
                   <div class="th">TAXES</div>
-                  <div class="th">№</div>
                   <div class="th">WEIGHT:</div>
-                  <div class="th tar-m">VOLUME:</div>
+                  <div class="th">VOLUME:</div>
+                  <div class="th tar-m">VALUE:</div>
                 </div>
-                <div class="tr tr-table-popup">
-                  <div class="td product"><span>{{currentProduct['name']}}</span></div>
-                  <div class="td hs-code"><span>{{currentProduct['hsCode']}}</span></div>
-                  <div class="td taxes"><span class="popup-wrapper-value-mob"><span>{{currentProduct['taxes']}}</span></span></div>
-                  <div class="td number-popup-cell"><span>1</span></div>
-                  <div class="td weight"><span *ngIf="currentProduct['packages']">{{currentProduct['packages'][0]?.weight}}</span></div>
-                  <div class="td volume tar-m"><span *ngIf="currentProduct['packages']">{{currentProduct['packages'][0]?.volume}}</span></div>
+                <div class="tr tr-table-popup" *ngFor="let package of currentProduct['packages']">
+                  <div class="td product"><span>{{package.product}}</span></div>
+                  <div class="td hs-code"><span>{{package.hsCode}}</span></div>
+                  <div class="td taxes"><span class="popup-wrapper-value-mob"><span>{{package.taxes}}</span></span></div>
+                  <div class="td weight"><span *ngIf="currentProduct['packages']">{{package.weight}}</span></div>
+                  <div class="td volume"><span *ngIf="currentProduct['packages']">{{package.volume}}</span></div>
+                  <div class="td value tar-m"><span *ngIf="currentProduct['packages']">{{package.value}}</span></div>
                 </div>
               </div>
-              <div class="total-line">
-                <p class="total-value">TOTAL WEIGHT: <span *ngIf="currentProduct['packages']">{{currentProduct['packages'][0]?.weight}}</span></p>
-                <p class="total-value">TOTAL VOLUME: <span *ngIf="currentProduct['packages']">{{currentProduct['packages'][0]?.volume}}</span></p>
+              <div class="total-line" *ngIf="currentProduct['packages']">
+                <p class="total-value">TOTAL WEIGHT: <span>{{currentProduct['packages'][0]?.weight}}</span></p>
+                <p class="total-value">TOTAL VOLUME: <span>{{currentProduct['packages'][0]?.volume}}</span></p>
+                <p class="total-value">TOTAL VALUE: <span>{{getTotalValue(currentProduct['packages'])}}</span></p>
               </div>
               <div class="cf"></div>
               <div class="popup-btn-close close-container-btn" (click)="close()"></div>

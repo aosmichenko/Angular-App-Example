@@ -24,6 +24,7 @@ export class ImportComponent implements OnInit {
   currentContainerDocumentsPopap = false;
   currentProductProblemPopap = false;
   currentProductDocumentsPopap = false;
+  currentContainerWhlocations = [];
 
   constructor(private apigClient: ApiService) { }
 
@@ -54,6 +55,10 @@ export class ImportComponent implements OnInit {
     this.apigClient.getContainerResourcesList(id).then((result) => {
       this.currentContainerDocumentsList = result.filter((r) => r.type === 'document');
     });
+
+    this.apigClient.getWhlocations(id).then((result) => {
+      this.currentContainerWhlocations = result;
+    });
   }
 
   openContainerDocumentsPopap() {
@@ -64,8 +69,8 @@ export class ImportComponent implements OnInit {
     this.currentContainerDocumentsPopap = false;
   }
 
-  approveContainer(id) {
-    this.apigClient.setContainerApprove(id).then((result) => {
+  approveContainer(container) {
+    this.apigClient.setContainerApprove(container.id, container.manifestNumber, container.wh.id).then((result) => {
       console.log(result);
     });
   }
@@ -143,6 +148,12 @@ export class ImportComponent implements OnInit {
       this.containerProductImagesPopap = '';
       $('body').removeClass('no-scroll');
     }, 100);
+  }
+
+  getTotalValue(packages = []) {
+    return '$' + packages.reduce((totalValue, item) => {
+      return totalValue + (item.value ? +item.value.replace('$', '') : 0);
+    }, 0);
   }
 
 }

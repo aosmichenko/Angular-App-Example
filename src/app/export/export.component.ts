@@ -178,7 +178,6 @@ export class ExportComponent implements OnInit {
     return '$' + packages.reduce((totalValue, item) => {
       return totalValue + (item.value ? +item.value.replace('$', '') : 0);
     }, 0);
-
   }
 
 }
