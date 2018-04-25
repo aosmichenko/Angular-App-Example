@@ -249,6 +249,11 @@
                   <span>{{container.trip + ' (' +
                     (container.lastReceivingDate ? 'Last receiving date: ' + container.lastReceivingDate : '') +
                     (container.loadingDate ? ' Loading date: ' + container.loadingDate : '') + ')'}}</span>
+
+
+                  <div>
+
+                  </div>
                 </div>
                 <div class="icon-list">
                   <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
@@ -285,16 +290,18 @@
                     type="button" class="btn-close-text">CLOSE</button>
                 </div>
 
-                <div class="container-cell">
-                  <input type="text" class="input-custom-style" placeholder="Container Number" name="container-number" [(ngModel)]="container.number">
-                </div>
+                <div>
+                  <div class="container-cell">
+                    <input type="text" class="input-custom-style" placeholder="Container Number" name="container-number" [(ngModel)]="container.number">
+                  </div>
 
-                <div class="container-cell">
-                  <input type="text" class="input-custom-style" placeholder="Seal Number" name="container-seal-number" [(ngModel)]="container.sealNumber">
-                </div>
+                  <div class="container-cell">
+                    <input type="text" class="input-custom-style" placeholder="Seal Number" name="container-seal-number" [(ngModel)]="container.sealNumber">
+                  </div>
 
-                <div class="container-cell">
-                  <input type="text" class="input-custom-style" placeholder="Bill of lading Number" name="container-bol-number" [(ngModel)]="container.BOLNumber">
+                  <div class="container-cell">
+                    <input type="text" class="input-custom-style" placeholder="Bill of lading Number" name="container-bol-number" [(ngModel)]="container.BOLNumber">
+                  </div>
                 </div>
 
               </div>
