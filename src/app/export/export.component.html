@@ -143,7 +143,7 @@
                   <div class="th tar-m">VALUE:</div>
                 </div>
                 <div class="tr tr-table-popup" *ngFor="let package of currentShipment['packages']">
-                  <div class="td product"><span>{{currentShipment['product']}}</span></div>
+                  <div class="td product"><span>{{package['product']}}</span></div>
                   <div class="td hs-code"><span>{{currentShipment['hsCode']}}</span></div>
                   <div class="td number-popup-cell"><span>1</span></div>
                   <div class="td weight"><span>{{package['weight']}}</span></div>
@@ -331,7 +331,6 @@
                   <div class="td total-volume cell-total-value"><span> </span></div>
                 </div>
               </div>
-              <p class="container-table-popup-heading">PACKAGES 1</p>
               <div class="table-popup container-table-popup table-popup-with-total-line">
                 <div class="tr tr-table-popup">
                   <div class="th">PRODUCT</div>
