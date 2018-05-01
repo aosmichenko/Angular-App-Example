@@ -467,13 +467,14 @@
 	padding: 35px 0;
 	max-width: 100%;
 	z-index: 99;
+	max-height: 90%;
+	overflow-y: auto;
 	@include r($M-) {
 		position: fixed;
+		max-height: 100%;
 		width: 100%;
 		top: 50%;
 		padding: 60px 0 0;
-		max-height: 100%;
-		overflow: auto;
 	}
 	@include m($M) {
 		&.popup-window-width-770 {
