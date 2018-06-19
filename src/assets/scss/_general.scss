@@ -920,6 +920,9 @@
       padding-left: 15px;
       padding-right: 15px;
     }
+  @include m($M) {
+    width: 835px;
+  }
 	.td {
 		@include r($M-) {
 			&.product {
