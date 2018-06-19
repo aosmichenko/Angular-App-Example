@@ -38,7 +38,7 @@
 
           <!-- TABLE ROW -->
 
-          <div class="tr tr-main-table bg-light-grey">
+          <div class="tr tr-main-table bg-dark-grey">
             <div class="th w-13">CUSTOMER</div>
             <div class="th w-12">DELIVERY ADDRESS</div>
             <div class="th w-10">PRODUCT</div>
@@ -74,11 +74,11 @@
 
             <!-- TABLES POPUP -->
 
-            <div class="popup-window popup-containers-section popup-deliveries-section" (click)="$event.stopPropagation()">
+            <div class="popup-window popup-containers-section popup-deliveries-section popup-last-mile" (click)="$event.stopPropagation()">
               <div class="info-bar">
-                <div class="container-cell">{{currentDelivery.customer}}</div>
+                <div class="container-cell name-cell">{{currentDelivery.customer}}</div>
                 <div class="delivery-address-popup-cell">{{currentDelivery.address1 + ' ' + currentDelivery.city}}</div>
-                <div class="delivery-status-popup-cell">DELIVERY STATUS: <span class="color-red">{{currentDelivery.status}}</span></div>
+                <div class="delivery-status-popup-cell">DELIVERY STATUS: <span class="color-red delivery-status-value">{{currentDelivery.status}}</span></div>
                 <div class="icon-list">
                   <div class="icon-popup-container-wrap" [class.active]="currentDeliveryDocumentsPopap">
                     <i class="fas fa-file-alt" (click)="openDeliveryDocumentsPopap()"></i>
@@ -99,22 +99,26 @@
                   </div>
                 </div>
               </div>
-              <div class="table-popup container-table-popup">
-                <div class="tr tr-table-popup">
-                  <div class="th">PRODUCT</div>
-                  <div class="th">CODE</div>
-                  <div class="th">DELIVERY RANGE</div>
-                  <div class="th">№</div>
-                </div>
-                <div class="tr tr-table-popup">
-                  <div class="td product"><span>{{currentDelivery.product}}</span></div>
-                  <div class="td code"><span>{{currentDelivery.code}}</span></div>
-                  <div class="td delivery-range">
-                    <span>{{currentDelivery.deliveryDateRangeFrom | date:'MMM d y'}} – {{currentDelivery.deliveryDateRangeTo | date:'MMM d y'}}</span>
-                  </div>
-                  <div class="td number-popup-cell"><span>1</span></div>
-                </div>
-              </div>
+              <table class="table-popup container-table-popup last-mile-table-popup">
+                <thead>
+                  <tr class="tr tr-table-popup">
+                    <td class="th w-190">PRODUCT</td>
+                    <td class="th w-225">CODE</td>
+                    <td class="th w-195">DELIVERY RANGE</td>
+                    <td class="th w-156">№</td>
+                  </tr>
+                </thead>
+                <tbody class="scroll-container last-mile-scroll-container">
+                  <tr class="tr tr-table-popup">
+                    <td class="td w-190 product"><span>{{currentDelivery.product}}</span></td>
+                    <td class="td w-225 code"><span>{{currentDelivery.code}}</span></td>
+                    <td class="td w-195 delivery-range">
+                      <span>{{currentDelivery.deliveryDateRangeFrom | date:'MMM d y'}} – {{currentDelivery.deliveryDateRangeTo | date:'MMM d y'}}</span>
+                    </td>
+                    <td class="td w-156 number-popup-cell"><span>1</span></td>
+                  </tr>
+                </tbody>
+              </table>
               <form action="#" method="post" class="delivers-form">
                 <div class="row">
                   <div class="col-md-4">
@@ -125,14 +129,14 @@
                   </div>
                   <div class="col-md-8">
                     <h6 class="data-input-title">Delivery remarks</h6>
-                    <input type="text" class="input-custom-style" name="delivery-remarks" [(ngModel)]="currentDelivery.deliveryRemarks">
+                    <input type="text" class="input-custom-style input-remarks" name="delivery-remarks" [(ngModel)]="currentDelivery.deliveryRemarks">
                   </div>
                 </div>
-                <div class="btn-close-text-wrap">
+                <div class="btn-close-text-wrap tar-m">
                   <button class="btn-close-text btn-form-save"
                           [disabled]="!currentDelivery.scheduledDeliveryDate?.length"
                           (click)="saveDelivery(currentDelivery['id'])"
-                  >save</button>
+                  >Approve delivery</button>
                 </div>
               </form>
               <div class="cf"></div>

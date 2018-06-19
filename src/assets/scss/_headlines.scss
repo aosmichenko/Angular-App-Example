@@ -1,21 +1,21 @@
 h1, .h1 {
-	@include ff(24, 32, 600);
-	font-family: $saira;
+	@include ff(24, 32, 700);
+	font-family: $muli;
 	margin: 0 0 3rem;
 	@include m($M) {
-		@include ff(36, 44, 600);
+		@include ff(36, 44, 700);
 	}
 }
 
 h2, .h2 {
 	@include ff(30, 38, 600);
-	font-family: $saira;
+	font-family: $muli;
 	margin: 0 0 2rem;
 }
 
 h3, .h3 {
-	@include ff(26, 44, 600);
-	font-family: $saira;
+	@include ff(26, 44, 700);
+	font-family: $muli;
 	margin: 0 0 2rem;
 }
 

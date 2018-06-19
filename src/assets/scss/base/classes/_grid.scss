@@ -33,7 +33,7 @@
 		@include container-fixed(60px);
 	}
 	@include m($L) {
-		@include container-fixed(100px);
+		@include container-fixed(80px);
 	}
 }
 

@@ -35,11 +35,11 @@
 
         <!-- INCOMING SHIPMENT TABLE -->
 
-        <div class="table">
+        <div class="table table-import-containers">
 
           <!-- TABLE ROW -->
 
-          <div class="tr tr-main-table bg-light-grey">
+          <div class="tr tr-main-table bg-dark-grey">
             <div class="th max-w-20">NUMBER</div>
             <div class="th max-w-15">VESSEL</div>
             <div class="th max-w-10">SIZE</div>
@@ -71,67 +71,77 @@
 
             <div class="popup-window popup-containers-section" (click)="$event.stopPropagation()">
               <div class="info-bar">
-                <div class="container-cell">
-                  <div class="container-cell">CONTAINERS <span>{{currentContainer['number']}}</span></div>
-                  <div class="icon-list">
-                    <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
-                      <i class="fas fa-file-alt" (click)="openContainerDocumentsPopap()"></i>
-                      <div class="popup-container photo-popup popup-container-pos-r" [class.open]="currentContainerDocumentsPopap">
-                        <span class="title-popup">Invoice</span>
-                        <div class="download-img" *ngFor="let document of currentContainerDocumentsList">
-                          <img [src]="document.img" [alt]="document.title">
-                          <div class="overlay">
-                            <i class="fas fa-cloud-download-alt"></i>
+                <div class="container-cell info-bar-wrap">
+                  <div class="info-bar-first-line">
+                    <div class="container-cell container-number">CONTAINERS <span>{{currentContainer['number']}}</span></div>
+                    <div class="icon-list">
+                      <div class="icon-popup-container-wrap" [class.active]="currentContainerDocumentsPopap">
+                        <i class="fas fa-file-alt" (click)="openContainerDocumentsPopap()"></i>
+                        <div class="popup-container photo-popup popup-container-pos-r" [class.open]="currentContainerDocumentsPopap">
+                          <span class="title-popup">Invoice</span>
+                          <div class="download-img" *ngFor="let document of currentContainerDocumentsList">
+                            <img [src]="document.img" [alt]="document.title">
+                            <div class="overlay">
+                              <i class="fas fa-cloud-download-alt"></i>
+                            </div>
                           </div>
+                          <span class="upload-new">Upload new</span>
+                          <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                          </div>
+                          <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerDocumentsPopap()"></div>
                         </div>
-                        <span class="upload-new">Upload new</span>
-                        <div class="upload-icon">
-                          <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerDocumentsPopap()"></div>
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <span>{{currentContainer['size']}}</span>
-                    <span>{{currentContainer['sealNumber']}}</span>
-                    <span>{{currentContainer['BOLNumber']}}</span>
+                  <div class="info-bar-second-line">
+                    <div>
+                      <p class="container-info">Container size <span>{{currentContainer['size']}}</span></p>
+                      <p class="container-info">Seal number<span>{{currentContainer['sealNumber']}}</span></p>
+                      <p class="container-info">Bill of lading #<span>{{currentContainer['BOLNumber']}}</span></p>
+                    </div>
+                    <div>
+                      <div class="container-cell">
+                        <p class="container-info-rp">
+                          Manifest number
+                          <input type="text" class="input-custom-style" placeholder="Manifest Number" name="container-manifest-number" [(ngModel)]="currentContainer['manifestNumber']">
+                        </p>
+                      </div>
+                      <ng-container *ngIf="currentContainer.wh">
+                        <div class="container-cell">
+                          <p class="container-info-rp">
+                            Wh location
+                            <span class="select-wrap">
+                              <select [(ngModel)]="currentContainer.wh.id" name="container-size" class="select-de">
+                                <option *ngFor="let whlocation of currentContainerWhlocations"
+                                        value="{{whlocation.id}}">{{whlocation.name}}</option>
+                              </select>
+                            </span>
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
-                <div class="container-cell">
-                  <input type="text" class="input-custom-style" placeholder="Manifest Number" name="container-manifest-number" [(ngModel)]="currentContainer['manifestNumber']">
-                </div>
-                <div class="container-cell">
-                  <ng-container *ngIf="currentContainer.wh">
-                    <select [(ngModel)]="currentContainer.wh.id" name="container-size" class="select-de">
-                      <option *ngFor="let whlocation of currentContainerWhlocations"
-                              value="{{whlocation.id}}">{{whlocation.name}}</option>
-                    </select>
-                  </ng-container>
-                </div>
-                <div class="btn-close-text-wrap">
-                  <button [disabled]="!currentContainer.wh?.id || !currentContainer.manifestNumber"
-                          (click)="approveContainer(currentContainer)" type="button" class="btn-close-text btn-approve-text">approve</button>
                 </div>
               </div>
 
               <div class="table-popup container-table-popup">
                 <div class="tr tr-table-popup">
-                  <div class="th">VESSEL</div>
-                  <div class="th">AGENT NUMBER</div>
-                  <div class="th">SHIPPER NUMBER</div>
-                  <div class="th">№</div>
-                  <div class="th">VESSEL TRIP</div>
-                  <div class="th cell-total-heading">TOTAL WEIGHT</div>
-                  <div class="th cell-total-heading">TOTAL VOLUME</div>
-                  <div class="th cell-total-heading">TOTAL VALUE</div>
+                  <div class="th w-140">VESSEL</div>
+                  <div class="th w-127">AGENT NUMBER</div>
+                  <div class="th w-140">SHIPPER NUMBER</div>
+                  <div class="th w-46">№</div>
+                  <div class="th w-105">VESSEL TRIP</div>
+                  <div class="th w-120 cell-total-heading">TOTAL WEIGHT</div>
+                  <div class="th w-122 cell-total-heading">TOTAL VOLUME</div>
+                  <div class="th w-150 cell-total-heading">TOTAL VALUE</div>
                 </div>
-                <div class="tr tr-table-popup">
+                <div class="tr tr-table-popup child-pad-20">
                   <div class="td vessel"><span>{{currentContainer['vessel']?.name}}</span></div>
                   <div class="td agent-number"><span>{{currentContainer['vessel']?.agentNumber}}</span></div>
                   <div class="td shipper-number"><span>{{currentContainer['vessel']?.shippeerNumber}}</span></div>
-                  <div class="td number-popup-cell"><span>{{currentContainer['numPackages']}}</span></div>
-                  <div class="td vessel-trip"><span>{{currentContainer['vessel']?.tripNumber}}</span></div>
+                  <div class="td number"><span>{{currentContainer['numPackages']}}</span></div>
+                  <div class="td vessel-trip input-style"><span class="style-like-input input-ec-cell fw-600">{{currentContainer['vessel']?.tripNumber}}</span></div>
                   <div class="td total-weight cell-total-value"><span>{{currentContainer['totalWeight']}}</span></div>
                   <div class="td total-volume cell-total-value"><span>{{currentContainer['totalVolume']}}</span></div>
                   <div class="td total-volume cell-total-value"><span>{{currentContainer['totalValue']}}</span></div>
@@ -139,73 +149,81 @@
               </div>
 
               <div class="table-popup container-table-popup table-popup-with-total-line">
-                <div class="tr tr-table-popup">
-                  <div class="th">PRODUCT</div>
-                  <div class="th">CODE</div>
-                  <div class="th">HS CODE</div>
-                  <div class="th">RECEIVED</div>
-                  <div class="th">№</div>
-                  <div class="th"></div>
-                </div>
-                <ng-container *ngFor="let containerProduct of containerProductsList">
+                <div class="t-head">
                   <div class="tr tr-table-popup">
-                    <div class="td product"><span>{{containerProduct.name}}</span></div>
-                    <div class="td code"><span>{{containerProduct.code}}</span></div>
-                    <div class="td hs-code"><span>{{containerProduct.hsCode}}</span></div>
-                    <div class="td received"><span>{{containerProduct.date}}</span></div>
-                    <div class="td number-popup-cell"><span>1</span></div>
-                    <div class="td total-weight cell-total-value visible-mob"><span>{{containerProduct.packages[0].weight}}</span></div>
-                    <div class="td total-volume cell-total-value visible-mob"><span>{{containerProduct.packages[0].volume}}</span></div>
-                    <div class="td">
-                      <ul class="icon-list tar-m">
-                        <li>
-                          <div class="icon-popup-container-wrap" [class.active]="containerProductImagesPopap == containerProduct.id+containerProduct.hsCode">
-                            <i class="fas fa-camera" (click)="openContainerProductImagesPopap(containerProduct)"></i>
-                            <div class="popup-container photo-popup" [class.open]="containerProductImagesPopap == containerProduct.id+containerProduct.hsCode">
-                              <span class="title-popup">Photo</span>
-                              <div class="download-img" *ngFor="let image of containerProduct.imagesList">
-                                <img [src]="image.img" [alt]="image.title">
-                                <div class="overlay">
-                                  <i class="fas fa-cloud-download-alt"></i>
-                                </div>
-                              </div>
-                              <span class="upload-new">Upload new</span>
-                              <div class="upload-icon">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                              </div>
-                              <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerProductImagesPopap()"></div>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="icon-popup-container-wrap" [class.active]="containerProductDocumentsPopap == containerProduct.id+containerProduct.hsCode">
-                            <i class="fas fa-file-alt" (click)="openContainerProductDocumentsPopap(containerProduct)"></i>
-                            <div class="popup-container photo-popup" [class.open]="containerProductDocumentsPopap == containerProduct.id+containerProduct.hsCode">
-                              <span class="title-popup">Invoice</span>
-                              <div class="download-img" *ngFor="let document of containerProduct.documentsList">
-                                <img [src]="document.img" [alt]="document.title">
-                                <div class="overlay">
-                                  <i class="fas fa-cloud-download-alt"></i>
-                                </div>
-                              </div>
-                              <span class="upload-new">Upload new</span>
-                              <div class="upload-icon">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                              </div>
-                              <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerProductDocumentsPopap()"></div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
+                    <div class="th w-185">PRODUCT</div>
+                    <div class="th w-215">CODE</div>
+                    <div class="th w-120">HS CODE</div>
+                    <div class="th w-120">RECEIVED</div>
+                    <div class="th w-60">№</div>
+                    <div class="th w-235"></div>
                   </div>
-                  <div class="tr tr-total-line">
-                    <div class="total-line">
-                      <p class="total-value">TOTAL WEIGHT: <span>{{containerProduct.packages[0].weight}}</span></p>
-                      <p class="total-value">TOTAL VOLUME: <span>{{containerProduct.packages[0].volume}}</span></p>
+                </div>
+                <div class="t-body scroll-container containers">
+                  <ng-container *ngFor="let containerProduct of containerProductsList">
+                    <div class="tr tr-table-popup pt-20">
+                      <div class="td w-185 product"><span>{{containerProduct.name}}</span></div>
+                      <div class="td w-215 code"><span>{{containerProduct.code}}</span></div>
+                      <div class="td w-120 hs-code"><span>{{containerProduct.hsCode}}</span></div>
+                      <div class="td w-120 received"><span>{{containerProduct.date}}</span></div>
+                      <div class="td w-60 number-popup-cell"><span>1</span></div>
+                      <div class="td total-weight cell-total-value visible-mob"><span>{{containerProduct.packages[0].weight}}</span></div>
+                      <div class="td total-volume cell-total-value visible-mob"><span>{{containerProduct.packages[0].volume}}</span></div>
+                      <div class="td w-235">
+                        <ul class="icon-list tar-m">
+                          <li>
+                            <div class="icon-popup-container-wrap" [class.active]="containerProductImagesPopap == containerProduct.id+containerProduct.hsCode">
+                              <i class="fas fa-camera" (click)="openContainerProductImagesPopap(containerProduct)"></i>
+                              <div class="popup-container photo-popup" [class.open]="containerProductImagesPopap == containerProduct.id+containerProduct.hsCode">
+                                <span class="title-popup">Photo</span>
+                                <div class="download-img" *ngFor="let image of containerProduct.imagesList">
+                                  <img [src]="image.img" [alt]="image.title">
+                                  <div class="overlay">
+                                    <i class="fas fa-cloud-download-alt"></i>
+                                  </div>
+                                </div>
+                                <span class="upload-new">Upload new</span>
+                                <div class="upload-icon">
+                                  <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerProductImagesPopap()"></div>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="icon-popup-container-wrap" [class.active]="containerProductDocumentsPopap == containerProduct.id+containerProduct.hsCode">
+                              <i class="fas fa-file-alt" (click)="openContainerProductDocumentsPopap(containerProduct)"></i>
+                              <div class="popup-container photo-popup" [class.open]="containerProductDocumentsPopap == containerProduct.id+containerProduct.hsCode">
+                                <span class="title-popup">Invoice</span>
+                                <div class="download-img" *ngFor="let document of containerProduct.documentsList">
+                                  <img [src]="document.img" [alt]="document.title">
+                                  <div class="overlay">
+                                    <i class="fas fa-cloud-download-alt"></i>
+                                  </div>
+                                </div>
+                                <span class="upload-new">Upload new</span>
+                                <div class="upload-icon">
+                                  <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="popup-btn-close popup-container-btn-close" (click)="closeContainerProductDocumentsPopap()"></div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </ng-container>
+                    <div class="tr tr-total-line">
+                      <div class="total-line container-total-line">
+                        <p class="total-value">TOTAL WEIGHT: <span>{{containerProduct.packages[0].weight}}</span></p>
+                        <p class="total-value">TOTAL VOLUME: <span>{{containerProduct.packages[0].volume}}</span></p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="btn-close-text-wrap btn-close-text-wrap-ic">
+                <button [disabled]="!currentContainer.wh?.id || !currentContainer.manifestNumber"
+                        (click)="approveContainer(currentContainer)" type="button" class="btn-close-text btn-approve-text">Approve unloading</button>
               </div>
               <div class="cf"></div>
               <div class="popup-btn-close close-container-btn" (click)="close()"></div>
@@ -243,22 +261,22 @@
 
         <!-- TABLES PRODUCTS -->
 
-        <div class="table">
+        <div class="table table-import-products">
 
           <!-- TABLES ROW -->
 
           <div class="tr tr-main-table bg-dark-grey">
             <div class="th max-w-16">CUSTOMER NAME</div>
-            <div class="th max-w-13">DESTINATION</div>
+            <div class="th max-w-12">DESTINATION</div>
             <div class="th max-w-16">ARRIVED DATE</div>
-            <div class="th max-w-9">SENDER</div>
-            <div class="th max-w-8">ORIGIN</div>
+            <div class="th max-w-8">SENDER</div>
+            <div class="th max-w-7">ORIGIN</div>
             <div class="th max-w-16">CODE</div>
             <div class="th max-w-6">№</div>
             <div class="th max-w-15">CUSTOMS STATUS</div>
-            <div class="th max-w-11">HS CODE</div>
-            <div class="th max-w-6">TOTAL VALUE</div>
-            <div class="th max-w-6">TAXES</div>
+            <div class="th max-w-8 tar">HS CODE</div>
+            <div class="th max-w-10 tar">TOTAL VALUE</div>
+            <div class="th max-w-8 tar">TAXES</div>
           </div>
 
           <!-- /TABLES ROW -->
@@ -269,96 +287,111 @@
                (click)="openProductsPop(product.id, product.id + product.code)"
                [ngClass]="{'open': productsPop === (product.id + product.code)}">
             <div class="td  max-w-16 customer"><span>{{product.customer}}</span></div>
-            <div class="td  max-w-13 destination"><span>{{product.destination}}</span></div>
+            <div class="td  max-w-12 destination"><span>{{product.destination}}</span></div>
             <div class="td  max-w-16 arrived-date"><span>{{product.arrivedDate | date:'MMM d y'}}</span></div>
-            <div class="td  max-w-9 sender"><span>{{product.sender}}</span></div>
-            <div class="td  max-w-8 origin"><span>{{product.origin}}</span></div>
+            <div class="td  max-w-8 sender"><span>{{product.sender}}</span></div>
+            <div class="td  max-w-7 origin"><span>{{product.origin}}</span></div>
             <div class="td  max-w-16 code"><span>{{product.code}}</span></div>
             <div class="td  max-w-6 number"><span>1</span></div>
             <div class="td  max-w-15 customs-status"><span>{{product.customsStatus}} {{product.customsStatusDate | date:'MMM d y'}}</span></div>
-            <div class="td  max-w-11 hs-code"><span>{{product.hsCode}}</span></div>
-            <div class="td  max-w-6 total-value"><span>{{product.totalValue}}</span></div>
-            <div class="td  max-w-6 taxes"><span>{{product.taxes}}</span></div>
+            <div class="td  max-w-8 hs-code tar-m"><span>{{product.hsCode}}</span></div>
+            <div class="td  max-w-10 total-value tar-m"><span>{{product.totalValue}}</span></div>
+            <div class="td  max-w-8 taxes tar-m last-of-type"><span>{{product.taxes}}</span></div>
 
             <!-- TABLES POPUP -->
 
-            <div class="popup-window popup-incoming-shipment popup-window-width-770" (click)="$event.stopPropagation()">
+            <div class="popup-window popup-incoming-shipment popup-window-width-770 table-import-products-popup" (click)="$event.stopPropagation()">
               <div class="info-bar info-bar-products">
-                <div class="date-cell">
-                  {{currentProduct['customer']}}
-                  <div>{{currentProduct['destination']}}</div>
+                <div class="info-bar-first-line">
+                  <div class="date-cell">{{currentProduct['customer']}}</div>
+                  <ul class="icon-list">
+                    <li>
+                      <div class="icon-popup-container-wrap" [class.active]="currentProductDocumentsPopap">
+                        <i class="fas fa-file-alt" (click)="openDocumentsPopap()"></i>
+                        <div class="popup-container photo-popup" [class.open]="currentProductDocumentsPopap">
+                          <span class="title-popup">Invoice</span>
+                          <div class="download-img" *ngFor="let document of currentProductDocumentsList">
+                            <img [src]="document.img" [alt]="document.title">
+                            <div class="overlay">
+                              <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                          </div>
+                          <span class="upload-new">Upload new</span>
+                          <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                          </div>
+                          <div class="popup-btn-close popup-container-btn-close" (click)="closeDocumentsPopap()"></div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="icon-popup-container-wrap" [class.active]="currentProductProblemPopap">
+                        <i class="fas fa-exclamation-triangle" (click)="openProblemsPopap()"></i>
+                        <div class="popup-container problem-popup" [class.open]="currentProductProblemPopap">
+                          <form action="#" method="post">
+                            <div class="selects-wrap selects-problem-wrap select-de">
+                              <select name="problem-list" id="dropdown-problem-list">
+                                <option value="0">Select problem</option>
+                              </select>
+                              <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <textarea name="message-problem" id="message-problem-field" placeholder="Message" rows="3"></textarea>
+                            <button type="submit" class="btn-submit-form">send</button>
+                          </form>
+                          <div class="popup-btn-close popup-container-btn-close" (click)="closeProblemsPopap()"></div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-                <div class="container-cell"><span>{{currentProduct['customerID']}}</span></div>
-                <div class="container-cell"><span>{{currentProduct['customerEmail']}}</span></div>
-                <ul class="icon-list">
-                  <li>
-                    <div class="icon-popup-container-wrap" [class.active]="currentProductDocumentsPopap">
-                      <i class="fas fa-file-alt" (click)="openDocumentsPopap()"></i>
-                      <div class="popup-container photo-popup" [class.open]="currentProductDocumentsPopap">
-                        <span class="title-popup">Invoice</span>
-                        <div class="download-img" *ngFor="let document of currentProductDocumentsList">
-                          <img [src]="document.img" [alt]="document.title">
-                          <div class="overlay">
-                            <i class="fas fa-cloud-download-alt"></i>
-                          </div>
-                        </div>
-                        <span class="upload-new">Upload new</span>
-                        <div class="upload-icon">
-                          <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <div class="popup-btn-close popup-container-btn-close" (click)="closeDocumentsPopap()"></div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="icon-popup-container-wrap" [class.active]="currentProductProblemPopap">
-                      <i class="fas fa-exclamation-triangle" (click)="openProblemsPopap()"></i>
-                      <div class="popup-container problem-popup" [class.open]="currentProductProblemPopap">
-                        <form action="#" method="post">
-                          <div class="selects-wrap selects-problem-wrap select-de">
-                            <select name="problem-list" id="dropdown-problem-list">
-                              <option value="0">Select problem</option>
-                            </select>
-                            <i class="fas fa-chevron-down"></i>
-                          </div>
-                          <textarea name="message-problem" id="message-problem-field" placeholder="Message" rows="3"></textarea>
-                          <button type="submit" class="btn-submit-form">send</button>
-                        </form>
-                        <div class="popup-btn-close popup-container-btn-close" (click)="closeProblemsPopap()"></div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <div class="container-cell"><span>{{getTotalValue(currentProduct['packages'])}}</span></div>
+                <div class="info-bar-second-line">
+                  <div class="container-cell">address: <span>{{currentProduct['destination']}}</span></div>
+                  <div class="container-cell">id: <span>{{currentProduct['customerID']}}</span></div>
+                  <div class="container-cell">mail: <span>{{currentProduct['customerEmail']}}</span></div>
+                  <!--<div class="container-cell"><span>{{getTotalValue(currentProduct['packages'])}}</span></div>-->
+                </div>
+              </div>
+              <table class="table-popup">
+                <thead class="t-head">
+                  <tr class="tr tr-table-popup">
+                    <th class="th w-160">PRODUCT:</th>
+                    <th class="th w-120">HS CODE:</th>
+                    <th class="th w-140">TAXES</th>
+                    <th class="th w-55">№</th>
+                    <th class="th w-90 tar">WEIGHT:</th>
+                    <th class="th w-100 tar">VOLUME:</th>
+                    <th class="th w-125 tar-m">VALUE:</th>
+                  </tr>
+                </thead>
+                <tbody class="t-body scroll-container t-body-import-products">
+                  <tr class="tr tr-table-popup" *ngFor="let package of currentProduct['packages']">
+                    <td class="td w-160 product"><span>{{package.product}}</span></td>
+                    <td class="td w-120 hs-code"><span>{{package.hsCode}}</span></td>
+                    <td class="td w-140 taxes"><span class="popup-wrapper-value-mob"><span>{{package.taxes}}</span></span></td>
+                    <td class="td w-55 number"><span>1</span></td>
+                    <td class="td w-90 wvv weight tar-m"><span *ngIf="currentProduct['packages']">{{package.weight}}</span></td>
+                    <td class="td w-100 wvv volume tar-m"><span *ngIf="currentProduct['packages']">{{package.volume}}</span></td>
+                    <td class="td w-125 wvv value tar-m"><span *ngIf="currentProduct['packages']">{{package.value}}</span></td>
+                  </tr>
+                  <tr class="total-line" *ngIf="currentProduct['packages']">
+                    <td class="td total-value" colspan="6">TOTAL WEIGHT:</td>
+                    <td class="td total-value"><span>{{currentProduct['packages'][0]?.weight}}</span></td>
+                  </tr>
+                  <tr class="total-line" *ngIf="currentProduct['packages']">
+                    <td class="td total-value" colspan="6">TOTAL VOLUME:</td>
+                    <td class="td total-value"><span>{{currentProduct['packages'][0]?.volume}}</span></td>
+                  </tr>
+                  <tr class="total-line" *ngIf="currentProduct['packages']">
+                    <td class="td total-value" colspan="6">TOTAL VALUE:</td>
+                    <td class="td total-value"><span>{{getTotalValue(currentProduct['packages'])}}</span></td>
+                  </tr>
+                </tbody>
+                <div class="cf"></div>
+                <div class="popup-btn-close close-container-btn" (click)="close()"></div>
                 <div class="btn-close-text-wrap">
-                  <button (click)="approveProduct(currentProduct['id'])" type="button" class="btn-close-text btn-approve-text ml0">approve</button>
+                  <button (click)="approveProduct(currentProduct['id'])" type="button" class="btn-close-text btn-approve-text ml0">Approve clearance</button>
                 </div>
-              </div>
-              <div class="table-popup">
-                <div class="tr tr-table-popup">
-                  <div class="th">PRODUCT:</div>
-                  <div class="th">HS CODE:</div>
-                  <div class="th">TAXES</div>
-                  <div class="th">WEIGHT:</div>
-                  <div class="th">VOLUME:</div>
-                  <div class="th tar-m">VALUE:</div>
-                </div>
-                <div class="tr tr-table-popup" *ngFor="let package of currentProduct['packages']">
-                  <div class="td product"><span>{{package.product}}</span></div>
-                  <div class="td hs-code"><span>{{package.hsCode}}</span></div>
-                  <div class="td taxes"><span class="popup-wrapper-value-mob"><span>{{package.taxes}}</span></span></div>
-                  <div class="td weight"><span *ngIf="currentProduct['packages']">{{package.weight}}</span></div>
-                  <div class="td volume"><span *ngIf="currentProduct['packages']">{{package.volume}}</span></div>
-                  <div class="td value tar-m"><span *ngIf="currentProduct['packages']">{{package.value}}</span></div>
-                </div>
-              </div>
-              <div class="total-line" *ngIf="currentProduct['packages']">
-                <p class="total-value">TOTAL WEIGHT: <span>{{currentProduct['packages'][0]?.weight}}</span></p>
-                <p class="total-value">TOTAL VOLUME: <span>{{currentProduct['packages'][0]?.volume}}</span></p>
-                <p class="total-value">TOTAL VALUE: <span>{{getTotalValue(currentProduct['packages'])}}</span></p>
-              </div>
-              <div class="cf"></div>
-              <div class="popup-btn-close close-container-btn" (click)="close()"></div>
+              </table>
             </div>
 
             <!-- /TABLES POPUP -->

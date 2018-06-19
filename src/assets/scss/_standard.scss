@@ -217,8 +217,8 @@ select,
 textarea,
 p {
 	color: $text;
-	font-family: $saira;
-	@include ff(13, 21, 500);
+	font-family: $muli;
+	@include ff(13, 21, 400);
 }
 h1,
 h2,
@@ -230,7 +230,7 @@ h6 {
 	color: #0d0d0d;
 }
 p {
-	font-family: $saira;
+	font-family: $muli;
 	font-size: inherit;
 	margin-bottom: 1.5em;
 }

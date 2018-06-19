@@ -1,8 +1,8 @@
 #footer {
 	background-color: #1f1f1f;
-	padding: 25px 20px;
+	padding: 25px 0;
 	@include m($S) {
-		padding: 20px 40px;
+		padding: 20px 0;
 	}
 	.footer-menu {
 		margin: 0;
@@ -15,7 +15,7 @@
 		li {
 			display: inline-block;
 			a {
-				font-family: $saira;
+				font-family: $muli;
 				@include ff(12, 25, 500);
 				color: #fefefe;
 				padding-left: 18px;
@@ -41,7 +41,7 @@
 					}
 				}
 				a {
-					font-family: $saira;
+					font-family: $muli;
 					@include ff(11,19,500);
 					color: #fefefe;
 					padding-left: 16px;
@@ -58,7 +58,7 @@
 		}
 	}
 	.copyright-footer {
-		font-family: $saira;
+		font-family: $muli;
 		@include ff(14,22,500);
 		color: $w;
 		text-align: center;

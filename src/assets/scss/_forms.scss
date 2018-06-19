@@ -5,7 +5,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	font-family:$saira;
+	font-family:$muli;
 	@include ff(16, 24, 400);
 	color: $b;
 	text-align: center;
@@ -35,17 +35,29 @@ input[type="email"],
 input[type="url"],
 input[type="password"],
 input[type="search"],
-textarea {
+textarea,
+.style-like-input {
 	display: inline-block;
 	width: 100%;
 	border: 1px solid $beige;
 	border-radius: 5px;
 	padding: 11px 20px;
-	@include ff(13,21,500);
+	@include ff(13,21,600);
 	color: $text;
 	&::-webkit-input-placeholder {
 		color: inherit;
 	}
+	&.input-ec-cell {
+		padding: 6px 15px;
+		@include r($M-) {
+			max-width: 120px;
+		}
+	}
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 textarea {
 	width: 100%;
@@ -59,6 +71,28 @@ textarea {
 	position: relative;
 	display: inline-block;
 }
+
+.container-select-wrap {
+	position: relative;
+	.select-de {
+		margin-left: 36px;
+		padding: 12px 48px 13px 14px;
+		@include ff(12,20,600);
+		@include r($M-) {
+			margin-left: 0;
+		}
+	}
+	i {
+		display: block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 14px;
+		color: #252525;
+		font-size: 12px;
+	}
+}
+
 
 .select-de {
 	border-radius: 5px;
@@ -81,6 +115,7 @@ textarea {
 	@include ff(13,21,500);
 	@include r($M-) {
 		width: 100%;
+		padding-right: 40px;
 	}
 	& + i {
 		right: 30px;
@@ -89,6 +124,9 @@ textarea {
 		height: 16px;
 		line-height: 16px;
 		font-size: 15px;
+		@include r($M-) {
+			right: 15px;
+		}
 	}
 }
 
@@ -149,6 +187,7 @@ textarea {
 	@include ff(12,20,600);
 	margin: 4px 0 10px;
 	padding: 0;
+	@include tr();
 	&:hover {
 		background: transparent;
 		text-decoration: underline;
@@ -156,14 +195,28 @@ textarea {
 		color: $red;
 	}
 	&.btn-submit-popup-window {
-		margin: 0 0 0 30px;
-		padding: 15px 0;
-		@include ff(12,20,600);
-		@include r($M) {
-			padding: 25px 0;
-			margin: 0;
-			@include ff(12,20,600);
+		font-family: $apercu;
+		margin: 0 0 0 40px;
+		padding: 11px 36px;
+		@include ff(15,23,700);
+		border-radius: 22.5px;
+		border: 1px solid $red;
+		&:hover {
+			text-decoration: none;
+			background-color: $red;
+			color: $w;
+			border-color: $red;
+		}
+		@include r($M-) {
+			padding: 10px 25px;
+			margin: 15px 0;
+			@include ff(14,20,600);
 			width: 100%;
+		}
+		@include m($S) {
+			width: auto;
+			padding: 11px 36px;
+			margin-left: 10px;
 		}
 	}
 }
@@ -179,6 +232,8 @@ textarea {
 		position: relative;
 		@include r($M-) {
 			margin-bottom: 25px;
+			width: 100%;
+			max-width: 250px;
 		}
 		.input-date {
 			padding-left: 55px;
@@ -201,7 +256,7 @@ textarea {
 	border: 1px solid $beige;
 	border-radius: 5px;
 	padding: 11px 20px;
-	@include ff(13,21,500);
+	@include ff(13,21,600);
 	color: $text;
 }
 
@@ -210,12 +265,25 @@ textarea {
 	@include m($M) {
 		display: inline-block;
 	}
+	&.btn-close-text-wrap-2 {
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		border-top: 1px solid $beige;
+		@include m($M) {
+			position: absolute;
+			text-align: right;
+		}
+		.btn-close-text {
+			margin: 19px 20px 19px 0;
+		}
+	}
 }
 
 
 .btn-close-text {
 	display: inline-block;
-	@include ff(15,25,600);
+	@include ff(15,25,700);
 	padding: 10px 40px;
 	background-color: $w;
 	border-radius: 22px;
@@ -224,7 +292,7 @@ textarea {
 	text-transform: uppercase;
 	transition: all 0.3s ease-in-out 0s;
 	margin-left: 45px;
-	@include r ($M) {
+	@include r ($M-) {
 		margin: 10px 0 0;
 	}
 	&:hover {

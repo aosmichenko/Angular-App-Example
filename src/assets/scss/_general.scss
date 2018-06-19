@@ -20,7 +20,7 @@
     }
   }
 	.tables-title {
-		margin-bottom: 30px;
+		margin-bottom: 25px;
 		@include r($M-) {
 			display: none;
 		}
@@ -234,6 +234,26 @@
 						content: '% FILLED';
 					}
 				}
+                &.vessel {
+                  &::before {
+                    content: 'VESSEL';
+                  }
+                }
+                &.agent-number {
+                  &::before {
+                    content: 'AGENT NUMBER';
+                  }
+                }
+                &.shippeer-number {
+                  &::before {
+                    content: 'SHIPPEER NUMBER';
+                  }
+                }
+                &.trip-number {
+                  &::before {
+                    content: 'TRIP NUMBER';
+                  }
+                }
 
 				/*----------------------------IMPORT SECTION STYLES-*/
 
@@ -277,6 +297,27 @@
 						content: 'TAXES';
 					}
 				}
+                &.total-weight {
+                  &::before {
+                    content: 'TOTAL WEIGHT';
+                  }
+                }
+                &.shipper-number {
+                  &::before {
+                    content: 'SHIPPER NUMBER';
+                  }
+                }
+                &.vessel-trip {
+                   &::before {
+                   content: 'VESSEL TRIP';
+                  }
+                }
+                &.total-value {
+                  &::before {
+                     content: 'TOTAL VALUE';
+                   }
+                }
+
 
 				/*----------------------------LAST MILE SECTION STYLES-*/
 
@@ -337,7 +378,7 @@
   @include m($M) {
     display: table-cell;
     color: $w;
-    @include ff(12,20,600);
+    @include ff(12,20,700);
     padding: 10px;
     vertical-align: middle;
     letter-spacing: .5px;
@@ -358,7 +399,7 @@
     display: table-cell;
     vertical-align: top;
     padding: 30px 10px;
-    @include ff(13,22,500);
+    @include ff(13,22,700);
     color: $text;
     letter-spacing: .5px;
     &:first-of-type {
@@ -386,6 +427,7 @@
   @include r($M-) {
 	  &:first-of-type {
 		  background: $text;
+        border-radius: 10px 10px 0 0;
 		  span {
 			  color: $red;
 			  text-decoration: underline;
@@ -394,20 +436,22 @@
 			  color: $w;
 		  }
 	  }
-    span {
-      padding: 15px;
-      @include ff(12,20,400);
-      color: $text;
-      display: inline-block;
-	    vertical-align: top;
-    }
-    &::before {
-      padding: 15px;
-      @include ff(12,20,600);
-      display: inline-block;
-      width: 44%;
-      color: $text;
-    }
+      span {
+        padding: 15px;
+        @include ff(12,20,400);
+        color: $text;
+        display: inline-block;
+        vertical-align: top;
+        width: 52%;
+      }
+      &::before {
+        font-family: $muli;
+        padding: 15px;
+        @include ff(13,20,700);
+        display: inline-block;
+        width: 44%;
+        color: $text;
+      }
   }
 }
 
@@ -435,6 +479,57 @@
 	@include m($M) {
 		text-align: right;
 	}
+}
+
+.fw-400 {
+  font-weight: 400 !important;
+}
+.fw-500 {
+  font-weight: 500 !important;
+}
+.fw-600 {
+  font-weight: 600 !important;
+}
+.fw-700 {
+  font-weight: 700 !important;
+}
+.fw-800 {
+  font-weight: 800 !important;
+}
+
+.pt-20 {
+  .td {
+    @include m($M) {
+      padding-top: 20px !important;
+    }
+  }
+}
+
+.child-pad-20 {
+  .td {
+    @include m($M) {
+      padding-bottom: 30px !important;
+      padding-top: 17px !important;
+      &.input-style {
+        padding-top: 10px !important;
+      }
+    }
+  }
+}
+
+.t-head {
+  display: table-header-group;
+}
+.t-body {
+  display: table-row-group;
+}
+.tar {
+  text-align: right;
+}
+.db-md {
+  @include r($M-) {
+    display: block;
+  }
 }
 
 /*---------------------------------Tables Styles BY CLASSES*/
@@ -473,10 +568,13 @@
 		position: fixed;
 		max-height: 100%;
 		width: 100%;
-		top: 50%;
+		top: 0;
+        left: 0;
+      transform: translate(0,0);
 		padding: 60px 0 0;
 	}
 	@include m($M) {
+        border-radius: 10px;
 		&.popup-window-width-770 {
 			width: 770px;
 			max-width: 100%;
@@ -495,7 +593,7 @@
 		}
 		.date-cell {
 			display: inline-block;
-			@include ff(15,23,600);
+			@include ff(15,23,800);
 			padding-right: 18px;
 			@include r($M-) {
 				float: left;
@@ -527,7 +625,7 @@
 			color: $text;
 			padding: 0 50px 0 40px;
 			span {
-				font-weight: 500;
+				font-weight: 700;
 			}
 		}
 		.icon-list {
@@ -536,8 +634,7 @@
 			padding: 0;
 			margin: 0;
 			@include r($M-) {
-				text-align: center;
-				padding: 0 5px;
+				padding: 0 15px;
 				width: 100%;
 			}
 			li {
@@ -563,7 +660,7 @@
 		}
 	}
 	.table-popup {
-		margin-bottom: 45px;
+		margin-bottom: 290px;
 		display: table;
 		width: 100%;
 		@include r($M-) {
@@ -593,22 +690,22 @@
 			}
 			&:last-of-type {
 				@include m($M) {
-					padding-right: 35px;
+					padding-right: 50px;
 				}
 			}
 			&.cell-total-heading {
-				font-weight: 500;
+				font-weight: 700;
 				@include m($M) {
 					text-align: right;
 				}
 			}
 		}
 		.td {
-			@include ff(13,31,500);
+			@include ff(13,31,600);
 			color: $text;
 			text-decoration: none;
 			padding-top: 10px;
-			padding-bottom: 0;
+			padding-bottom: 10px;
 			&:first-of-type {
 				@include m($M) {
 					padding-left: 35px;
@@ -626,24 +723,117 @@
 				}
 			}
 		}
+        .th,
+        .td {
+            @include m($M) {
+                &.w-235 {
+                  width: 235px;
+                }
+                &.w-225 {
+                  width: 225px;
+                }
+                &.w-215 {
+                  width: 215px;
+                }
+                &.w-195 {
+                  width: 195px;
+                }
+                &.w-190 {
+                  width: 190px;
+                }
+                &.w-185 {
+                  width: 185px;
+                }
+                &.w-160 {
+                  width: 160px;
+                }
+                &.w-156 {
+                  width: 156px;
+                }
+                &.w-150 {
+                  width: 150px;
+                }
+                &.w-148 {
+                  width: 148px;
+                }
+                &.w-145 {
+                  width: 145px;
+                }
+                &.w-140 {
+                  width: 140px;
+                }
+                &.w-138 {
+                  width: 138px;
+                }
+                &.w-137 {
+                  width: 137px;
+                }
+                &.w-134 {
+                  width: 149px;
+                }
+                &.w-127 {
+                  width: 127px;
+                }
+                &.w-125 {
+                  width: 125px;
+                }
+                &.w-122 {
+                  width: 122px;
+                }
+                &.w-120 {
+                  width: 120px;
+                }
+                &.w-105 {
+                  width: 105px;
+                }
+                &.w-100 {
+                  width: 100px;
+                }
+                &.w-90 {
+                  width: 90px;
+                }
+                &.w-88 {
+                  width: 88px;
+                }
+                &.w-60 {
+                  width: 60px;
+                }
+                &.w-55 {
+                  width: 55px;
+                }
+                &.w-46 {
+                  width: 46px;
+                }
+            }
+        }
+        .th {
+            @include m($M) {
+                &.w-235 {
+                  width: 250px;
+                }
+                &.w-134 {
+                  width: 149px;
+                }
+            }
+        }
 		.tr-table-popup {
 			.td {
 				&.cell-total-value {
 					span {
-						font-weight: 700;
+						font-weight: 800;
 					}
 					@include m($M) {
 						text-align: right;
 					}
 					&::before {
 						@include r($M-) {
-							font-weight: 500;
+							font-weight: 700;
 						}
 					}
 				}
 			}
 			@include r($M-) {
-				margin-bottom: 25px;
+				margin-bottom: 10px;
 				.td {
 					span {
 						@include r($M-) {
@@ -669,34 +859,45 @@
 				}
 			}
 		}
+	    .scroll-container {
+          @include m($M) {
+		    position: absolute;
+			height: 245px;
+			overflow-y: auto;
+            &.containers {
+              height: 255px;
+              width: 100%;
+            }
+          }
+	    }
 	}
 	.total-line {
-		float: right;
-		width: 275px;
-		margin-bottom: 20px;
-		@include r($M-) {
-			float: none;
-			padding: 0 30px;
-			width: auto;
-		}
-		.total-value {
-			margin-bottom: 25px;
-			padding-right: 35px;
-			@include ff(12,20,600);
-			color: $gray;
-			@include r($M) {
-				padding-right: 0;
-			}
-			span {
-				float: right;
-				@include ff(13,21,700);
-				color: $text;
-				@include r($M-) {
-					width: 55%;
-					padding: 0 15px;
-				}
-			}
-		}
+        td {
+            padding-bottom: 20px;
+            &.total-heading {
+                text-align: right;
+                padding: 0 10px 20px;
+                @include ff(12,20,600);
+                color: $gray;
+                @include r($M-) {
+                  display: inline-block;
+                  text-align: left;
+                  padding: 0 15px;
+                  width: 45%;
+                }
+            }
+            &.total-value {
+                text-align: right;
+                padding: 0 35px 20px 10px;
+                @include ff(13,21,800);
+                color: $text;
+                @include r($M-) {
+                  display: inline-block;
+                  text-align: left;
+                  padding: 0 15px;
+                }
+            }
+        }
 	}
 	.footer-line {
 		padding: 0 35px;
@@ -715,10 +916,10 @@
 
 
 .popup-incoming-shipment {
-	@include m($S) {
-		width: 655px;
-		max-width: 100%;
-	}
+    @include r($M-) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
 	.td {
 		@include r($M-) {
 			&.product {
@@ -746,6 +947,11 @@
 					content: 'VOLUME:';
 				}
 			}
+          &.value {
+            &::before {
+              content: 'VALUE:';
+            }
+          }
 			&.delivery-range {
 				&::before {
 					content: 'DELIVERY RANGE';
@@ -761,9 +967,12 @@
 }
 
 .popup-containers-section {
-	padding-bottom: 0;
-	width: 771px;
+  @include m ($M) {
+	width: 950px;
 	max-width: 100%;
+    min-height: 700px;
+    padding-bottom: 88px;
+  }
 	.info-bar {
 		@include r($M-) {
 			text-align: left;
@@ -772,11 +981,53 @@
 			@include ff(15, 23, 600);
 			color: $text;
 			padding-left: 0;
+			&:first-of-type {
+				padding-right: 0;
+			}
 			@include r($M-) {
 				margin-bottom: 20px;
 			}
+			span {
+				font-family: $muli;
+				@include ff(13,21,400);
+				margin: 0;
+				&:first-of-type {
+					@include ff(15,23,800);
+				}
+				&.input-cell-title {
+					font-family: $muli;
+					@include ff(13,21,400);
+					margin-bottom: 10px;
+					display: block;
+				}
+			}
+			.input-custom-style {
+				padding: 7px 10px;
+				@include ff(13,21,600);
+				width: auto;
+				min-width: 160px;
+				color: #999;
+				&::-webkit-input-placeholder {
+					color: inherit;
+				}
+              @include r($M-) {
+                width: 115px;
+                min-width: 115px;
+              }
+			}
+		}
+		.popup-second-line {
+			.container-cell {
+				padding: 0 24px 0 0;
+				&:first-of-type {
+					.input-custom-style {
+						color: $text;
+					}
+				}
+			}
 		}
 		.icon-list {
+			padding-left: 24px;
 			@include r($M-) {
 				width: auto;
 				float: right;
@@ -798,6 +1049,7 @@
 		}
 	}
 	.container-table-popup {
+		margin-bottom: 0;
 		.th {
 			color: $text;
 			@include ff(12,20,400);
@@ -805,7 +1057,7 @@
 			padding-bottom: 15px;
 		}
 		.td {
-			@include ff(13,21,500);
+			@include ff(13,21,600);
 			padding-top: 10px;
 			padding-bottom: 10px;
 		}
@@ -890,14 +1142,16 @@
 			margin: 0;
 			width: 100%;
 			@include r($M-) {
-				text-align: center;
-				padding: 0 5px;
+				padding: 0 15px;
 				width: 100%;
 			}
 			li {
 				display: inline-block;
-				padding: 0 0 0 25px;
+				padding: 0 0 0 50px;
 				position: relative;
+                &:first-of-type {
+                  padding-left: 0;
+                }
 				button {
 					& > i {
 						display: block;
@@ -965,8 +1219,19 @@
 			padding: 0 35px 0 5px;
 			span {
 				padding-left: 8px;
+                font-weight: 800;
 			}
 		}
+        &.container-total-line {
+            .total-value {
+                @include ff(12, 20, 600);
+                color: #8a8a8a;
+                span {
+                  @include ff(13, 21, 800);
+                  color: #404040;
+                }
+            }
+        }
 	}
 	.td.visible-mob.cell-total-value {
 		@include r($M-) {
@@ -994,13 +1259,21 @@
 
 .popup-deliveries-section {
 	.info-bar {
+        @include r($M) {
+          margin-bottom: 0;
+        }
+        .name-cell {
+            @include r($M-) {
+              margin-bottom: 3px;
+            }
+        }
 		.delivery-address-popup-cell {
 			display: inline-block;
 			@include ff(13, 21, 400);
 			color: $gray;
 			@include r($M-) {
-				padding-left: 15px;
-				float: right;
+              display: block;
+              margin-bottom: 20px;
 			}
 		}
 		.delivery-status-popup-cell {
@@ -1009,28 +1282,38 @@
 			color: $text;
 			padding: 0 50px 0 40px;
 			@include r($M-) {
-				position: absolute;
-				top: 18px;
-				left: 0;
-				padding: 0 15px;
+              display: block;
+              padding-left: 0;
+              margin-bottom: 10px;
 			}
 			span {
-				font-weight: 500;
+				font-weight: 700;
 			}
 		}
 		.icon-list {
 			@include r($M-) {
 				display: block;
-				text-align: center;
+                text-align: left;
 				float: none;
+                li {
+                  &:first-of-type {
+                    padding-left: 0;
+                  }
+                }
 			}
 		}
 	}
 	.data-input-title {
-		@include ff(13, 21, 500);
+		@include ff(13, 21, 400);
 		color: $text;
-		margin: 0 0 15px;
+		margin: 0 0 5px;
 		text-align: left;
+        @include r($M-) {
+          text-align: center;
+        }
+        @include r($S-) {
+          text-align: left;
+        }
 	}
 }
 
@@ -1134,4 +1417,309 @@
 			}
 		}
 	}
+}
+
+/*-------------------------------- THIRD ITR STYLES -----*/
+
+.table-import-containers {
+  .popup-containers-section {
+    .info-bar {
+      @include r($M-) {
+        margin-bottom: 0;
+      }
+      .info-bar-wrap {
+        width: 100%;
+        @include r($M-) {
+          margin-bottom: 0;
+        }
+      }
+      .container-number {
+        @include ff(15,23,800);
+      }
+      .info-bar-first-line {
+        margin-bottom: 15px;
+      }
+      .info-bar-second-line {
+        @include m($M) {
+          display: flex;
+          justify-content: space-between;
+        }
+        .container-info {
+          margin: 0 0 15px;
+          display: inline-block;
+          @include ff(13,20,400);
+          padding-right: 8px;
+          vertical-align: top;
+          @include m($M) {
+            padding-right: 20px;
+            margin: 0;
+          }
+          & > span {
+            display: block;
+            margin-top: 5px;
+            background-color: #f8f8f8;
+            @include ff(13,21,600);
+            min-width: 135px;
+            border-radius: 5px;
+            padding: 7px 10px;
+            min-height: 35px;
+            @include r($M-) {
+              margin-top: 15px;
+            }
+          }
+        }
+        .container-info-rp {
+          margin: 0;
+          display: inline-block;
+          @include ff(13,20,400);
+          padding-right: 0;
+          @include m($M) {
+            padding-left: 20px;
+          }
+          & > input,
+          & select {
+            display: block;
+            margin-top: 15px;
+            @include ff(12,21,600);
+            min-width: 145px;
+            border: 1px solid $beige;
+            border-radius: 5px;
+            padding: 7px 12px;
+            color: #404040;
+            @include r($M-) {
+              min-width: 130px;
+              margin: 0 8px 0 0;
+            }
+          }
+          & > .select-wrap {
+            display: block;
+            position: relative;
+            &:after {
+              content: '\f078';
+              display: block;
+              position: absolute;
+              top: 50%;
+              right: 12px;
+              font-family: "Font Awesome\ 5 Free";
+              transform: translateY(-50%);
+              font-size: 12px;
+              font-weight: 700;
+            }
+            & > select {
+              padding-right: 36px;
+              @include r($M-) {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .btn-close-text-wrap-ic {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid $beige;
+      .btn-approve-text {
+        margin: 20px;
+      }
+      @include m($M) {
+        position: absolute;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.table-import-products {
+  .tr-main-table {
+    .td {
+      &.last-of-type {
+        @include m($M) {
+          padding-right: 45px;
+        }
+      }
+    }
+  }
+  .table-import-products-popup {
+    @include m($M) {
+      padding-bottom: 88px;
+      width: 790px;
+      min-height: 565px;
+    }
+    .info-bar-products {
+      @include r($M-) {
+        text-align: left;
+      }
+    }
+    .info-bar-first-line {
+      margin-bottom: 10px;
+      .icon-list {
+        @include r($M-) {
+          width: auto;
+        }
+        li {
+          padding: 0 20px 0 0;
+        }
+      }
+    }
+    .info-bar-second-line {
+      @include m($M) {
+        padding-bottom: 20px;
+      }
+      .container-cell {
+        padding: 0 12px;
+        @include ff(13,21,700);
+        color: #404040;
+        @include r($M-) {
+          margin: 0;
+          padding: 0;
+          display: block;
+        }
+        &:first-of-type {
+          padding-left: 0;
+        }
+        span {
+          @include ff(13,21,400);
+        }
+      }
+    }
+    .btn-close-text-wrap {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-top: 1px solid $beige;
+      @include m($M) {
+        text-align: right;
+        position: absolute;
+      }
+      .btn-close-text.btn-approve-text {
+        margin: 20px;
+      }
+    }
+    .table-popup {
+      margin-bottom: 0;
+      .td {
+        &:last-of-type {
+          @include m($M) {
+            padding-right: 50px;
+          }
+        }
+        .popup-wrapper-value-mob {
+          @include m($M) {
+            display: block;
+          }
+        }
+      }
+    }
+    .total-line {
+      .total-value {
+        @include ff(12,20,600);
+        color: #8a8a8a;
+        @include r($M-) {
+          display: inline-block;
+        }
+        span {
+          @include ff(13,21,800);
+          color: #404040;
+          @include r($M-) {
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .t-body-import-products {
+      min-height: 300px;
+      width: 100%;
+      .wvv {
+        span {
+          @include r($M-) {
+            font-weight: 800;
+          }
+        }
+      }
+      .total-line {
+        td.total-value {
+          @include r($M-) {
+            display: block;
+            padding: 0;
+            &:first-of-type {
+              display: none;
+            }
+            span {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.popup-last-mile {
+  @include m($M) {
+    width: 767px;
+    min-height: 500px;
+  }
+  .info-bar {
+    .name-cell {
+      @include ff(15,23,800);
+      margin-right: 15px;
+    }
+    .delivery-status-popup-cell {
+      padding-left: 0;
+      padding-right: 0;
+      @include m($M) {
+        padding-left: 35px;
+      }
+      .delivery-status-value {
+        text-transform: uppercase;
+      }
+    }
+  }
+  .last-mile-table-popup {
+    height: 210px;
+    .last-mile-scroll-container {
+      width: 100%;
+      height: 160px;
+    }
+  }
+  .delivers-form {
+    border-top: 1px solid $beige;
+    padding: 10px 15px 0;
+    @include m($M) {
+      padding: 15px 60px;
+    }
+    @include r($S-) {
+      text-align: left;
+    }
+    .input-remarks {
+      @include r($M-) {
+        max-width: 250px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .btn-close-text-wrap {
+    border-top: 1px solid $beige;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    @include m($M) {
+      position: absolute;
+    }
+    .btn-close-text.btn-form-save {
+      margin: 20px;
+    }
+  }
+}
+.mob-mb-0 {
+  @include r($M-) {
+    margin-bottom: 0 !important;
+  }
+}
+.space-between {
+  @include r($M-) {
+    display: block;
+  }
 }
