@@ -57,6 +57,14 @@
 		}
 	}
 	&.tr-main-table {
+        & > th {
+          &:first-of-type {
+            border-radius: 10px 0 0;
+          }
+          &:last-of-type {
+            border-radius: 0 10px 0 0;
+          }
+        }
 		@include m($M) {
 			.td,
 			.th {
@@ -384,11 +392,9 @@
     letter-spacing: .5px;
     &:first-of-type {
       padding-left: 45px;
-      border-radius: 10px 0 0;
     }
     &:last-of-type {
       padding-right: 45px;
-      border-radius: 0 10px 0 0;
     }
   }
 }
@@ -1482,7 +1488,7 @@
           & > input,
           & select {
             display: block;
-            margin-top: 15px;
+            margin-top: 5px;
             @include ff(12,21,600);
             min-width: 145px;
             border: 1px solid $beige;
@@ -1724,5 +1730,10 @@
 .space-between {
   @include r($M-) {
     display: block;
+  }
+}
+.container-cell-select {
+  @include r($M) {
+    width: 100%;
   }
 }

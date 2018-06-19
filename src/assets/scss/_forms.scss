@@ -28,6 +28,13 @@ input[type="submit"] {
 		background-color: $b;
 		color: $w;
 	}
+	&[disabled] {
+		color: $gray;
+		border-color: $gray;
+		&:hover {
+			background-color: $gray;
+		}
+	}
 }
 input[type="text"],
 input[type="tel"],
@@ -76,7 +83,7 @@ textarea {
 	position: relative;
 	.select-de {
 		margin-left: 36px;
-		padding: 12px 48px 13px 14px;
+		padding: 7px 48px 7px 14px;
 		@include ff(12,20,600);
 		@include r($M-) {
 			margin-left: 0;
@@ -217,6 +224,9 @@ textarea {
 			width: auto;
 			padding: 11px 36px;
 			margin-left: 10px;
+		}
+		@include m($M) {
+			float: right;
 		}
 	}
 }
