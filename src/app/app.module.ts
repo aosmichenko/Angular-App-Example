@@ -9,6 +9,7 @@ import { ExportComponent } from './export/export.component';
 import { ImportComponent } from './import/import.component';
 import { LastMileComponent } from './last-mile/last-mile.component';
 import {ApiService} from './shared/service/api.service';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 
 
@@ -17,7 +18,8 @@ import {ApiService} from './shared/service/api.service';
     AppComponent,
     ExportComponent,
     ImportComponent,
-    LastMileComponent
+    LastMileComponent,
+    CalculatorComponent
   ],
   imports: [
     BrowserModule,

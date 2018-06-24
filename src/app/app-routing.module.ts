@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {ExportComponent} from './export/export.component';
 import {LastMileComponent} from './last-mile/last-mile.component';
 import {ImportComponent} from './import/import.component';
+import {CalculatorComponent} from './calculator/calculator.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: 'import',
     component: ImportComponent
   },
+  {
+    path: 'calculator',
+    component: CalculatorComponent
+  }
 ];
 
 @NgModule({

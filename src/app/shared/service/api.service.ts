@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 declare var apigClientFactory;
+declare var apigClientFactoryCalculator;
 
 @Injectable()
 export class ApiService {
   apigClient;
+  apigCalculatorClient;
 
   constructor() {
     this.apigClient = apigClientFactory.newClient();
+    this.apigCalculatorClient = apigClientFactoryCalculator.newClient();
   }
 
   getContainers() {
@@ -233,6 +236,38 @@ export class ApiService {
   getExportContainerProductResources(containerid, productid) {
     return this.apigClient.v1ExportContainersContaineridProductsProductidResourcesGet({containerid, productid}).then((result) => {
       return result.data.resources;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  categoriesGet() {
+    return this.apigCalculatorClient.categoriesGet().then((result) => {
+      return result.data.categories;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  countriesDestGet() {
+    return this.apigCalculatorClient.countriesDestGet().then((result) => {
+      return result.data.countries;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  countriesOriginGet() {
+    return this.apigCalculatorClient.countriesOriginGet().then((result) => {
+      return result.data.countries;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  makeQuoteProductPost(model) {
+    return this.apigCalculatorClient.quoteProductPost({}, model).then((result) => {
+      return result.data;
     }, (error) => {
       console.log(error);
     });

@@ -1,0 +1,148 @@
+<!-- PAGES TITLE -->
+
+<div class="pages-title-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="pages-title">Shipping Calculator</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /PAGES TITLE -->
+
+<section class="tables-wrap active">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <h3>Product Details</h3>
+
+        <form name="productDetails" #productDetails="ngForm">
+          <hr />
+          <div class="form-group row">
+            <div class="col-sm-3 custom-label">Product Type</div>
+            <div class="col-sm-4">
+              <label for="productType" class="sr-only">Product Type</label>
+              <select class="form-control" id="productType" name="productType" [(ngModel)]="model.category" required>
+                <option *ngFor="let category of categories" [value]="category[0]">
+                  {{category[1]}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-3 custom-label">Product Price</div>
+            <div class="col-sm-2">
+              <label for="productPrice" class="sr-only">Product Price</label>
+              <div class="input-group">
+                <input class="form-control" id="productPrice" name="productPrice" [(ngModel)]="model.price" required>
+                <div class="input-group-addon">$</div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="form-group row" *ngFor="let packageItem of model.packages; let i = index">
+            <div class="col-sm-3" style="font-weight: bold">
+              <span *ngIf="i == 0">Packaging</span>
+            </div>
+            <div class="col-sm-2">
+              <label *ngIf="i == 0" for="packageWeight{{i}}">Weight (lbs)</label>
+              <input class="form-control" id="packageWeight{{i}}" name="packageWeight{{i}}" [(ngModel)]="packageItem.weight" required>
+            </div>
+            <div class="col-sm-2">
+              <label *ngIf="i == 0" for="packageHeight{{i}}">Height (in)</label>
+              <input class="form-control" id="packageHeight{{i}}" name="packageHeight{{i}}" [(ngModel)]="packageItem.height" required>
+            </div>
+            <div class="col-sm-2">
+              <label *ngIf="i == 0" for="packageWidth{{i}}">Width (in)</label>
+              <input class="form-control" id="packageWidth{{i}}" name="packageWidth{{i}}" [(ngModel)]="packageItem.width" required>
+            </div>
+            <div class="col-sm-2">
+              <label *ngIf="i == 0" for="packageDepth{{i}}">Depth (in)</label>
+              <input class="form-control" id="packageDepth{{i}}" name="packageDepth{{i}}" [(ngModel)]="packageItem.depth" required>
+            </div>
+            <div class="col-sm-1">
+              <ng-container *ngIf="model.packages.length < 10 && i == 0">
+                <button class="btn btn-warning btn-xs custom-button" (click)="addPackage()">+ Add</button>
+              </ng-container>
+              <ng-container *ngIf="i != 0">
+                <button class="btn btn-default btn-xs custom-button2" (click)="removePackage(i)">- Remove</button>
+              </ng-container>
+            </div>
+          </div>
+          <hr />
+          <div class="form-group row">
+            <div class="col-sm-3 custom-label">Route</div>
+            <div class="col-sm-4">
+              <label for="originCountry">Origin Country</label>
+              <select class="form-control" id="originCountry" name="originCountry" [(ngModel)]="model.origin" required>
+                <option *ngFor="let country of originCountriesList" [value]="country[0]">
+                  {{country[1]}}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <label for="destCountry">Dest Country</label>
+              <select class="form-control" id="destCountry" name="destCountry" [(ngModel)]="model.dest" required>
+                <option *ngFor="let country of destCountriesList" [value]="country[0]">
+                  {{country[1]}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-3 custom-label">Local shipping costs</div>
+            <div class="col-sm-2">
+              <label for="localShippingCosts" class="sr-only">Local shipping costs</label>
+              <div class="input-group">
+                <input class="form-control" id="localShippingCosts" name="localShippingCosts" [(ngModel)]="model.localShippingCost" required>
+                <div class="input-group-addon">$</div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="text-right">
+            <button class="btn btn-warning" (click)="clearAll()" >CLEAR ALL</button>
+            <button class="btn btn-warning" (click)="calculate()" [disabled]="productDetails.form.invalid" >Calculate</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <h3>Shipping</h3>
+
+        <hr />
+        <div class="form-group row">
+          <div class="col-sm-6">Product Price</div>
+          <div class="col-sm-6 text-right">{{calculationResult.productPrice}}</div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">Shipping Costs</div>
+          <div class="col-sm-6 text-right">{{calculationResult.shippingCosts.international}}</div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">Taxes</div>
+          <div class="col-sm-6 text-right">{{calculationResult.taxes.salesTax}}</div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">Total Price</div>
+          <div class="col-sm-6 text-right">0</div>
+        </div>
+        <hr />
+        <div class="form-group row">
+          <div class="col-sm-6">Delivery Time</div>
+          <div class="col-sm-6 text-right">{{calculationResult.deliveryTimeDays}} days</div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">Destination WH</div>
+          <div class="col-sm-6 text-right"></div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">Delivery Notes</div>
+          <div class="col-sm-6 text-right"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
