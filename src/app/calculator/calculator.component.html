@@ -114,19 +114,47 @@
         <hr />
         <div class="form-group row">
           <div class="col-sm-6">Product Price</div>
-          <div class="col-sm-6 text-right">{{calculationResult.productPrice}}</div>
+          <div class="col-sm-6 text-right">${{calculationResult.productPrice}}</div>
         </div>
         <div class="form-group row">
           <div class="col-sm-6">Shipping Costs</div>
-          <div class="col-sm-6 text-right">{{calculationResult.shippingCosts.international}}</div>
+          <div class="col-sm-6 text-right">
+            ${{calculationResult.totalShipping}}
+            <span (click)="showShippingCosts = !showShippingCosts" class="glyphicon glyphicon-chevron-{{showShippingCosts ? 'up' : 'down'}}"></span>
+          </div>
         </div>
+        <ng-container *ngIf="showShippingCosts">
+          <hr/>
+          <div class="form-group row">
+            <div class="col-sm-offset-1 col-sm-5">International</div>
+            <div class="col-sm-6 text-right">${{calculationResult.shippingCosts.international}}</div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-offset-1 col-sm-5">Domestic</div>
+            <div class="col-sm-6 text-right">${{calculationResult.shippingCosts.domestic}}</div>
+          </div>
+        </ng-container>
         <div class="form-group row">
           <div class="col-sm-6">Taxes</div>
-          <div class="col-sm-6 text-right">{{calculationResult.taxes.salesTax}}</div>
+          <div class="col-sm-6 text-right">
+            ${{calculationResult.totalTaxes}}
+            <span (click)="showTaxes = !showTaxes" class="glyphicon glyphicon-chevron-{{showTaxes ? 'up' : 'down'}}"></span>
+          </div>
         </div>
+        <ng-container *ngIf="showTaxes">
+          <hr/>
+          <div class="form-group row">
+            <div class="col-sm-offset-1 col-sm-5">Sales Tax</div>
+            <div class="col-sm-6 text-right">${{calculationResult.taxes.salesTax}}</div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-offset-1 col-sm-5">Vat</div>
+            <div class="col-sm-6 text-right">${{calculationResult.taxes.vat}}</div>
+          </div>
+        </ng-container>
         <div class="form-group row">
           <div class="col-sm-6">Total Price</div>
-          <div class="col-sm-6 text-right">0</div>
+          <div class="col-sm-6 text-right">${{calculationResult.totalPrice}}</div>
         </div>
         <hr />
         <div class="form-group row">
@@ -135,7 +163,23 @@
         </div>
         <div class="form-group row">
           <div class="col-sm-6">Destination WH</div>
-          <div class="col-sm-6 text-right"></div>
+          <div class="col-sm-6">{{calculationResult.destinationWH.name}}</div>
+        </div>
+        <div class="form-group row" *ngIf="calculationResult.destinationWH.addr1">
+          <div class="col-sm-6"></div>
+          <div class="col-sm-6">{{calculationResult.destinationWH.addr1}}</div>
+        </div>
+        <div class="form-group row" *ngIf="calculationResult.destinationWH.addr2">
+          <div class="col-sm-6"></div>
+          <div class="col-sm-6">{{calculationResult.destinationWH.addr2}}</div>
+        </div>
+        <div class="form-group row" *ngIf="calculationResult.fullAdress">
+          <div class="col-sm-6"></div>
+          <div class="col-sm-6">{{calculationResult.fullAdress}}</div>
+        </div>
+        <div class="form-group row" *ngIf="calculationResult.destinationWH.Phone">
+          <div class="col-sm-6"></div>
+          <div class="col-sm-6">Phone number: {{calculationResult.destinationWH.Phone}}</div>
         </div>
         <div class="form-group row">
           <div class="col-sm-6">Delivery Notes</div>

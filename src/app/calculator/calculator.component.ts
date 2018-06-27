@@ -13,7 +13,8 @@ export class CalculatorComponent implements OnInit {
   categories: any[] = [];
   originCountriesList: any[] = [];
   destCountriesList: any[] = [];
-
+  showTaxes: false;
+  showShippingCosts: false;
   model: ShippingModel;
   calculationResult: CalculationResult;
 
@@ -43,7 +44,7 @@ export class CalculatorComponent implements OnInit {
 
   calculate() {
     this.apigClient.makeQuoteProductPost(this.model).then((result: CalculationResult) => {
-      this.calculationResult = result ? result : this.createNewCalculationResult();
+      this.calculationResult = result ? this.createNewCalculationResult(result) : this.createNewCalculationResult();
     });
   }
 
@@ -52,28 +53,44 @@ export class CalculatorComponent implements OnInit {
     this.calculationResult = this.createNewCalculationResult();
   }
 
-  createNewCalculationResult(): CalculationResult {
-    return {
-      productPrice: undefined,
-      deliveryTimeDays: undefined,
+  createNewCalculationResult(data?): CalculationResult {
+    const results = {
+      totalTaxes: 0,
+      totalShipping: 0,
+      totalPrice: 0,
+      fullAdress: '',
+      productPrice: data && data.productPrice || 0,
+      deliveryTimeDays: data && data.deliveryTimeDays || 0,
       shippingCosts: {
-        international: undefined,
-        domestic: undefined
+        international: data && data.shippingCosts && data.shippingCosts.international || 0,
+        domestic: data && data.shippingCosts && data.shippingCosts.domestic || 0
       },
       taxes: {
-        salesTax: undefined,
-        vat: undefined
+        salesTax: data && data.taxes && data.taxes.salesTax || 0,
+        vat: data && data.taxes && data.taxes.vat || 0
       },
       destinationWH: {
-        name: undefined,
-        addr1: undefined,
-        addr2: undefined,
-        city: undefined,
-        state: undefined,
-        zip: undefined,
-        Phone: undefined
+        name: data && data.destinationWH && data.destinationWH.name || undefined,
+        addr1: data && data.destinationWH && data.destinationWH.addr1 || undefined,
+        addr2: data && data.destinationWH && data.destinationWH.addr2 || undefined,
+        city: data && data.destinationWH && data.destinationWH.city || undefined,
+        state: data && data.destinationWH && data.destinationWH.state || undefined,
+        zip: data && data.destinationWH && data.destinationWH.zip || undefined,
+        Phone: data && data.destinationWH && data.destinationWH.Phone || undefined
       }
     };
+
+    const address = [];
+    if (results.destinationWH.city) {address.push(results.destinationWH.city); }
+    if (results.destinationWH.state) {address.push(results.destinationWH.state); }
+    if (results.destinationWH.zip) {address.push(results.destinationWH.zip); }
+    results.fullAdress = address.join(',');
+
+    results.totalTaxes = results.taxes.salesTax + results.taxes.vat;
+    results.totalShipping = results.shippingCosts.international + results.shippingCosts.domestic;
+    results.totalPrice = results.productPrice + results.totalTaxes + results.totalShipping;
+
+    return results;
   }
 
   createNewShipping(): ShippingModel {

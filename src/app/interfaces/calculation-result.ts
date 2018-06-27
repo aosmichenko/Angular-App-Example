@@ -1,5 +1,9 @@
 export interface CalculationResult {
   productPrice: number;
+  totalPrice: number;
+  totalTaxes: number;
+  totalShipping: number;
+  fullAdress: string;
   deliveryTimeDays: number;
   shippingCosts: {
     international: number;
