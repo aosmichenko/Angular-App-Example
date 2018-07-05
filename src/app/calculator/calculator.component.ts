@@ -13,8 +13,8 @@ export class CalculatorComponent implements OnInit {
   categories: any[] = [];
   originCountriesList: any[] = [];
   destCountriesList: any[] = [];
-  showTaxes: false;
-  showShippingCosts: false;
+  showTaxes = false;
+  showShippingCosts = false;
   model: ShippingModel;
   calculationResult: CalculationResult;
 
