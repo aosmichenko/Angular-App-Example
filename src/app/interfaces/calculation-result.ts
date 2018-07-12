@@ -11,6 +11,8 @@ export interface CalculationResult {
   };
   taxes: {
     salesTax: number;
+    customs: number;
+    buying: number;
     vat: number;
   };
   destinationWH: {

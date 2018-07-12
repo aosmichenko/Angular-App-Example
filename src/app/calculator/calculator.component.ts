@@ -67,6 +67,8 @@ export class CalculatorComponent implements OnInit {
       },
       taxes: {
         salesTax: data && data.taxes && data.taxes.salesTax || 0,
+        customs: data && data.taxes && data.taxes.customs || 0,
+        buying: data && data.taxes && data.taxes.buying || 0,
         vat: data && data.taxes && data.taxes.vat || 0
       },
       destinationWH: {
@@ -86,7 +88,7 @@ export class CalculatorComponent implements OnInit {
     if (results.destinationWH.zip) {address.push(results.destinationWH.zip); }
     results.fullAdress = address.join(',');
 
-    results.totalTaxes = results.taxes.salesTax + results.taxes.vat;
+    results.totalTaxes = results.taxes.salesTax + results.taxes.vat + results.taxes.buying + results.taxes.customs;
     results.totalShipping = results.shippingCosts.international + results.shippingCosts.domestic;
     results.totalPrice = results.productPrice + results.totalTaxes + results.totalShipping;
 
@@ -97,9 +99,10 @@ export class CalculatorComponent implements OnInit {
     return {
       'category': '',
       'price': '',
-      'localShippingCost': '',
-      'origin': '',
-      'dest': '',
+      'localShippingCost': '0',
+      'localSalesTax': '0',
+      'origin': 'US',
+      'dest': 'IL',
       'packages': [
         this.createNewPackage()
       ]
