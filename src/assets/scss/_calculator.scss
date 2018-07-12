@@ -1,0 +1,318 @@
+.hidden-mob {
+  @include r($M-) {
+    display: none !important;
+  }
+}
+.hidden-desk {
+  @include m($M) {
+    display: none !important;
+  }
+}
+.visible-mob {
+  @include m($M) {
+    display: none !important;
+  }
+}
+.visible-desk {
+  @include r($M-) {
+    display: none !important;
+  }
+}
+.as-c {
+  align-self: center;
+}
+.tdu {
+  text-decoration: underline;
+}
+.text-left-mob {
+  @include r($M-) {
+    text-align: left;
+  }
+}
+
+
+
+.pages-title-wrap {
+  @include r($M-) {
+    margin-top: 40px;
+  }
+  .calc-pages-title {
+    font-family: $apercu;
+    @include ff(28,36,700);
+    text-align: center;
+    margin-bottom: 30px;
+    @include m($M) {
+      @include ff(48,58,700);
+      margin-bottom: 95px;
+    }
+  }
+}
+
+.calc-input-group {
+  width: 40%;
+  @include m($M) {
+    width: 100%;
+  }
+}
+
+.form-control {
+  @include ff(14,21,600);
+  border-color: #e8e8e8;
+  height: auto;
+  padding: 6px 30px 6px 15px;
+  border-radius: 5px !important;
+  color: $text;
+  outline: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  &.form-control-select {
+    position: relative;
+    z-index: 3;
+    background: transparent;
+  }
+}
+
+.custom-label {
+  @include ff(15,20,600);
+  @include r($M-) {
+    margin-bottom: 10px;
+  }
+}
+
+
+.tables-wrap {
+  .title-column {
+    font-family: $apercu;
+    @include ff(20,28,700);
+    margin-bottom: 20px;
+    @include m($M) {
+      @include ff(30,38,700);
+      margin-bottom: 30px;
+    }
+  }
+  hr {
+    height: 1px;
+    background-color: #e8e8e8;
+    margin: 20px 0;
+    @include m($M) {
+      margin: 30px 0 25px;
+    }
+  }
+  .product-details {
+    @include r($M-) {
+      margin-bottom: 45px;
+    }
+    .form-control-wrap {
+      position: relative;
+      margin-bottom: 3px;
+      display: block;
+      @include r($M-) {
+        margin-bottom: 15px;
+      }
+      &:before {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 12px;
+      }
+    }
+    #productPrice,
+    #localShippingCosts {
+      border-radius: 5px;
+      min-width: 90px;
+      outline: none;
+      letter-spacing: .5px;
+    }
+    .input-group-addon {
+      background: transparent;
+      border: none;
+      @include ff(15,23,400);
+      color: #a4a4a4;
+    }
+    .packaging-row {
+      .label-cell {
+        font-weight: 400;
+        @include m($M) {
+          display: none;
+          &:first-child {
+            display: block;
+          }
+        }
+      }
+      & > div[class*="col-"] {
+        @include m($M) {
+          padding-left: 7px;
+          padding-right: 7px;
+        }
+      }
+      .number-packaging-row {
+        @include ff(15,35,600);
+        @include m($M) {
+          text-align: right;
+        }
+        @include r($M-) {
+          padding: 0 0 10px;
+          margin: 0 15px 10px;
+          border-bottom: 1px dashed #e8e8e8;
+          display: flex;
+          justify-content: space-between;
+        }
+        span {
+          @include r($M-) {
+            &:before {
+              content: 'Item ';
+            }
+          }
+        }
+      }
+      .custom-button-add {
+        font-family: $muli;
+        border-radius: 5px;
+        background: $red;
+        padding: 4px 9px;
+        @include ff(12,16,600);
+        color: $w;
+        margin: 0;
+        border: none;
+        outline: none;
+        @include tr();
+        &:hover {
+          background: #c44b1a;
+        }
+        @include r($M-) {
+          width: 100%;
+          max-width: 320px;
+          padding-top: 9px;
+          padding-bottom: 9px;
+        }
+        span {
+          font-weight: 800;
+        }
+      }
+      .custom-button-remove {
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        i {
+          font-size: 15px;
+          color: $red;
+          @include tr();
+        }
+        &:hover {
+          i {
+            color: #c44b1a;
+          }
+        }
+      }
+    }
+    .order-wrap {
+      display: flex;
+      flex-direction: column;
+      .order-1 {
+        &:first-child {
+          order: 1;
+          @include r($M-) {
+            &:before {
+              content: 'Add New Item';
+              display: block;
+              @include ff(15,20,600);
+              margin: 0 15px;
+              color: $text;
+            }
+          }
+        }
+      }
+      .mob-align-cell {
+        @include r($M-) {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 16px;
+          .form-control {
+            max-width: 90px;
+            flex-shrink: 1;
+          }
+        }
+      }
+    }
+    .title-select {
+      font-weight: 400;
+    }
+    .btn {
+      font-family: $apercu;
+      @include ff(15,23,700);
+      color: $red;
+      background: transparent;
+      box-shadow: none;
+      text-shadow: none;
+      border: none;
+      outline: none;
+      &.btn-clear-all {
+        margin-right: 38px;
+        line-height: 45px;
+        padding: 0;
+        margin-top: 0;
+        @include tr();
+        @include m($M) {
+          margin-right: 65px;
+        }
+        &:hover {
+          color: #c44b1a;
+        }
+      }
+      &.btn-calculate {
+        border: 1px solid $red;
+        border-radius: 22.5px;
+        padding: 10px 38px;
+        margin-top: 0;
+        @include m($M) {
+          padding-left: 55px;
+          padding-right: 55px;
+        }
+        @include tr();
+        svg {
+          display: inline-block;
+          margin-right: 12px;
+          width: 14px;
+          height: 14px;
+          path {
+            @include tr();
+          }
+        }
+        &:hover {
+          background: $red;
+          color: $w;
+          path {
+            fill: $w;
+          }
+        }
+      }
+    }
+  }
+}
+
+.shipping-content-wrap {
+  & > .form-group {
+    @include r($M) {
+      margin-bottom: 7px;
+    }
+  }
+  .shipping-result {
+    @include ff(14,22,600);
+  }
+  .dashed {
+    height: 0;
+    border-top: 1px dashed #e8e8e8;
+    background-clip: padding-box;
+    @include r($M-) {
+      margin: 5px 0;
+    }
+  }
+  hr {
+    @include r($M-) {
+      margin: 10px 0;
+    }
+  }
+}

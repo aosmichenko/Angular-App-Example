@@ -1,208 +1,269 @@
 <!-- PAGES TITLE -->
 
 <div class="pages-title-wrap">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1 class="pages-title">Shipping Calculator</h1>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="pages-title calc-pages-title">Shipping Calculator</h1>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- /PAGES TITLE -->
 
 <section class="tables-wrap active">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-8">
-        <h3>Product Details</h3>
+    <div class="container">
+        <div class="row row-md-df">
+            <div class="col-sm-12 col-md-7">
+                <h3 class="title-column">Product Details</h3>
 
-        <form name="productDetails" #productDetails="ngForm">
-          <hr />
-          <div class="form-group row">
-            <div class="col-sm-3 custom-label">Product Type</div>
-            <div class="col-sm-4">
-              <label for="productType" class="sr-only">Product Type</label>
-              <select class="form-control" id="productType" name="productType" [(ngModel)]="model.category" required>
-                <option *ngFor="let category of categories" [value]="category[0]">
-                  {{category[1]}}
-                </option>
-              </select>
+                <form name="productDetails" #productDetails="ngForm" class="product-details">
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-sm-3 custom-label">Product Type</div>
+                        <div class="col-sm-4">
+                            <label for="productType" class="sr-only">Product Type</label>
+                            <span class="form-control-wrap glyphicon glyphicon-chevron-down">
+                            <select class="form-control form-control-select" id="productType" name="productType" [(ngModel)]="model.category" required>
+                              <option *ngFor="let category of categories" [value]="category[0]">
+                                {{category[1]}}
+                              </option>
+                            </select>
+                          </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3 custom-label">Product Price</div>
+                        <div class="col-sm-2">
+                            <label for="productPrice" class="sr-only">Product Price</label>
+                            <div class="input-group calc-input-group">
+                                <input class="form-control" id="productPrice" name="productPrice"
+                                       [(ngModel)]="model.price" required>
+                                <div class="input-group-addon">$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-sm-2" style="font-weight: bold">
+                            <span class="custom-label">Packaging</span>
+                        </div>
+                        <div class="col-sm-1 hidden-mob">
+                        </div>
+                        <div class="col-sm-2 hidden-mob">
+                            <label class="label-cell">Weight (lbs)</label>
+                        </div>
+                        <div class="col-sm-2 hidden-mob">
+                            <label class="label-cell">Height (in)</label>
+                        </div>
+                        <div class="col-sm-2 hidden-mob">
+                            <label class="label-cell">Width (in)</label>
+                        </div>
+                        <div class="col-sm-2 hidden-mob">
+                            <label class="label-cell">Depth (in)</label>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                    <div class="order-wrap">
+                        <div class="form-group row order-1 packaging-row row-md-df ai-c"
+                             *ngFor="let packageItem of model.packages; let i = index">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-1 number-packaging-row">
+                                <span *ngIf="i !== 0">{{i}}</span>
+                                <ng-container *ngIf="i != 0">
+                                    <button class="btn btn-default btn-xs custom-button2 custom-button-remove hidden-desk"
+                                            (click)="removePackage(i)"><i class="fas fa-trash-alt"></i></button>
+                                </ng-container>
+                            </div>
+                            <div class="col-md-2 mob-align-cell">
+                                <label for="packageWeight{{i}}" class="label-cell hidden-desk">Weight (lbs)</label>
+                                <input class="form-control" id="packageWeight{{i}}" name="packageWeight{{i}}"
+                                       [(ngModel)]="packageItem.weight" required>
+                            </div>
+                            <div class="col-md-2 mob-align-cell">
+                                <label for="packageHeight{{i}}" class="label-cell hidden-desk">Height (in)</label>
+                                <input class="form-control" id="packageHeight{{i}}" name="packageHeight{{i}}"
+                                       [(ngModel)]="packageItem.height" required>
+                            </div>
+                            <div class="col-md-2 mob-align-cell">
+                                <label for="packageWidth{{i}}" class="label-cell hidden-desk">Width (in)</label>
+                                <input class="form-control" id="packageWidth{{i}}" name="packageWidth{{i}}"
+                                       [(ngModel)]="packageItem.width" required>
+                            </div>
+                            <div class="col-md-2 mob-align-cell">
+                                <label for="packageDepth{{i}}" class="label-cell hidden-desk">Depth (in)</label>
+                                <input class="form-control" id="packageDepth{{i}}" name="packageDepth{{i}}"
+                                       [(ngModel)]="packageItem.depth" required>
+                            </div>
+                            <div class="col-md-1">
+                                <ng-container *ngIf="model.packages.length < 10 && i == 0">
+                                    <button class="btn btn-warning btn-xs custom-button custom-button-add"
+                                            (click)="addPackage()"><span>+</span> Add
+                                    </button>
+                                </ng-container>
+                                <ng-container *ngIf="i != 0">
+                                    <button class="btn btn-default btn-xs custom-button2 custom-button-remove hidden-mob"
+                                            (click)="removePackage(i)"><i class="fas fa-trash-alt"></i></button>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-md-3 custom-label">Route</div>
+                        <div class="col-md-4">
+                            <label for="originCountry" class="title-select">Origin Country</label>
+                            <span class="form-control-wrap glyphicon glyphicon-chevron-down">
+                            <select class="form-control form-control-select" id="originCountry" name="originCountry" [(ngModel)]="model.origin"
+                                    required>
+                              <option *ngFor="let country of originCountriesList" [value]="country[0]">
+                                {{country[1]}}
+                              </option>
+                            </select>
+                          </span>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="destCountry" class="title-select">Dest Country</label>
+                            <span class="form-control-wrap glyphicon glyphicon-chevron-down">
+                            <select class="form-control form-control-select" id="destCountry" name="destCountry"
+                                    [(ngModel)]="model.dest" required>
+                              <option *ngFor="let country of destCountriesList" [value]="country[0]">
+                                {{country[1]}}
+                              </option>
+                            </select>
+                          </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3 custom-label">Local shipping costs</div>
+                        <div class="col-md-3">
+                            <label for="localShippingCosts" class="sr-only">Local shipping costs</label>
+                            <div class="input-group calc-input-group">
+                                <input class="form-control" id="localShippingCosts" name="localShippingCosts"
+                                       [(ngModel)]="model.localShippingCost" required>
+                                <div class="input-group-addon">$</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3 custom-label">Local sales tax</div>
+                        <div class="col-md-3">
+                            <label for="localShippingCosts" class="sr-only">Local sales tax</label>
+                            <div class="input-group calc-input-group">
+                                <input class="form-control" id="localSalesTax" name="localSalesTax"
+                                       [(ngModel)]="model.localSalesTax" required>
+                                <div class="input-group-addon">%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="text-right text-left-mob">
+                        <button class="btn btn-warning btn-clear-all" (click)="clearAll()">CLEAR ALL</button>
+                        <button class="btn btn-warning btn-calculate" (click)="calculate()" [disabled]="productDetails.form.invalid">
+                            <svg aria-hidden="true" data-prefix="fas" data-icon="divide" class="svg-inline--fa fa-divide fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path fill="#f15a25" d="M224 352c-35.35 0-64 28.65-64 64s28.65 64 64 64 64-28.65 64-64-28.65-64-64-64zm0-192c35.35 0 64-28.65 64-64s-28.65-64-64-64-64 28.65-64 64 28.65 64 64 64zm192 48H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+                            </svg>
+                            Calculate
+                        </button>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-3 custom-label">Product Price</div>
-            <div class="col-sm-2">
-              <label for="productPrice" class="sr-only">Product Price</label>
-              <div class="input-group">
-                <input class="form-control" id="productPrice" name="productPrice" [(ngModel)]="model.price" required>
-                <div class="input-group-addon">$</div>
-              </div>
+            <div class="col-md-1 tac as-c hidden-mob">
+                <img src="/assets/img/calc-big-arrow.png" alt="">
             </div>
-          </div>
-          <hr />
-          <div class="form-group row" *ngFor="let packageItem of model.packages; let i = index">
-            <div class="col-sm-3" style="font-weight: bold">
-              <span *ngIf="i == 0">Packaging</span>
-            </div>
-            <div class="col-sm-2">
-              <label *ngIf="i == 0" for="packageWeight{{i}}">Weight (lbs)</label>
-              <input class="form-control" id="packageWeight{{i}}" name="packageWeight{{i}}" [(ngModel)]="packageItem.weight" required>
-            </div>
-            <div class="col-sm-2">
-              <label *ngIf="i == 0" for="packageHeight{{i}}">Height (in)</label>
-              <input class="form-control" id="packageHeight{{i}}" name="packageHeight{{i}}" [(ngModel)]="packageItem.height" required>
-            </div>
-            <div class="col-sm-2">
-              <label *ngIf="i == 0" for="packageWidth{{i}}">Width (in)</label>
-              <input class="form-control" id="packageWidth{{i}}" name="packageWidth{{i}}" [(ngModel)]="packageItem.width" required>
-            </div>
-            <div class="col-sm-2">
-              <label *ngIf="i == 0" for="packageDepth{{i}}">Depth (in)</label>
-              <input class="form-control" id="packageDepth{{i}}" name="packageDepth{{i}}" [(ngModel)]="packageItem.depth" required>
-            </div>
-            <div class="col-sm-1">
-              <ng-container *ngIf="model.packages.length < 10 && i == 0">
-                <button class="btn btn-warning btn-xs custom-button" (click)="addPackage()">+ Add</button>
-              </ng-container>
-              <ng-container *ngIf="i != 0">
-                <button class="btn btn-default btn-xs custom-button2" (click)="removePackage(i)">- Remove</button>
-              </ng-container>
-            </div>
-          </div>
-          <hr />
-          <div class="form-group row">
-            <div class="col-sm-3 custom-label">Route</div>
-            <div class="col-sm-4">
-              <label for="originCountry">Origin Country</label>
-              <select class="form-control" id="originCountry" name="originCountry" [(ngModel)]="model.origin" required>
-                <option *ngFor="let country of originCountriesList" [value]="country[0]">
-                  {{country[1]}}
-                </option>
-              </select>
-            </div>
-            <div class="col-sm-4">
-              <label for="destCountry">Dest Country</label>
-              <select class="form-control" id="destCountry" name="destCountry" [(ngModel)]="model.dest" required>
-                <option *ngFor="let country of destCountriesList" [value]="country[0]">
-                  {{country[1]}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-3 custom-label">Local shipping costs</div>
-            <div class="col-sm-2">
-              <label for="localShippingCosts" class="sr-only">Local shipping costs</label>
-              <div class="input-group">
-                <input class="form-control" id="localShippingCosts" name="localShippingCosts" [(ngModel)]="model.localShippingCost" required>
-                <div class="input-group-addon">$</div>
-              </div>
-            </div>
-            <div class="col-sm-3 custom-label">Local sales tax</div>
-            <div class="col-sm-2">
-              <label for="localShippingCosts" class="sr-only">Local sales tax</label>
-              <div class="input-group">
-                <input class="form-control" id="localSalesTax" name="localSalesTax" [(ngModel)]="model.localSalesTax" required>
-                <div class="input-group-addon">%</div>
-              </div>
-            </div>
-          </div>
-          <hr />
-          <div class="text-right">
-            <button class="btn btn-warning" (click)="clearAll()" >CLEAR ALL</button>
-            <button class="btn btn-warning" (click)="calculate()" [disabled]="productDetails.form.invalid" >Calculate</button>
-          </div>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <h3>Shipping</h3>
+            <div class="col-sm-12 col-md-4 shipping-result-wrap">
+                <h3 class="title-column">Shipping</h3>
 
-        <hr />
-        <div class="form-group row">
-          <div class="col-sm-6">Product Price</div>
-          <div class="col-sm-6 text-right">${{calculationResult.productPrice}}</div>
+                <hr/>
+                <div class="shipping-content-wrap">
+                    <div class="form-group row">
+                        <div class="col-xs-6 custom-label">Product Price</div>
+                        <div class="col-xs-6 text-right shipping-result">${{calculationResult.productPrice}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-6 custom-label">Shipping Costs</div>
+                        <div class="col-xs-6 text-right shipping-result">
+                            ${{calculationResult.totalShipping}}
+                            <span (click)="showShippingCosts = !showShippingCosts"
+                                  class="glyphicon glyphicon-chevron-{{showShippingCosts ? 'up' : 'down'}}"></span>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="showShippingCosts">
+                        <hr class="dashed"/>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">International</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.shippingCosts.international}}</div>
+                        </div>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">Domestic</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.shippingCosts.domestic}}</div>
+                        </div>
+                    </ng-container>
+                    <div class="form-group row">
+                        <div class="col-xs-6 custom-label">Taxes</div>
+                        <div class="col-xs-6 text-right shipping-result">
+                            ${{calculationResult.totalTaxes}}
+                            <span (click)="showTaxes = !showTaxes"
+                                  class="glyphicon glyphicon-chevron-{{showTaxes ? 'up' : 'down'}}"></span>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="showTaxes">
+                        <hr class="dashed"/>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">Local Sales Tax</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.taxes.salesTax}}</div>
+                        </div>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">Customs</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.taxes.customs}}</div>
+                        </div>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">Purchase Tax</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.taxes.buying}}</div>
+                        </div>
+                        <div class="form-group row mob-mb-0">
+                            <div class="col-xs-offset-1 col-xs-5 custom-label">VAT</div>
+                            <div class="col-xs-6 text-right shipping-result">${{calculationResult.taxes.vat}}</div>
+                        </div>
+                    </ng-container>
+                    <div class="form-group row">
+                        <div class="col-xs-6 custom-label">Total Price</div>
+                        <div class="col-xs-6 text-right shipping-result color-red">${{calculationResult.totalPrice}}</div>
+                    </div>
+                    <hr />
+                    <div class="form-group row">
+                        <div class="col-xs-5 custom-label">Delivery Time</div>
+                        <div class="col-xs-7 text-right shipping-result">{{calculationResult.deliveryTimeDays}} days</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-5 custom-label">Destination WH</div>
+                        <div class="col-xs-7 shipping-result">{{calculationResult.destinationWH.name}}</div>
+                    </div>
+                    <div class="form-group row" *ngIf="calculationResult.destinationWH.addr1">
+                        <div class="col-xs-5"></div>
+                        <div class="col-xs-7 shipping-result color-red tdu">{{calculationResult.destinationWH.addr1}}</div>
+                    </div>
+                    <div class="form-group row" *ngIf="calculationResult.destinationWH.addr2">
+                        <div class="col-xs-5"></div>
+                        <div class="col-xs-7 shipping-result">{{calculationResult.destinationWH.addr2}}</div>
+                    </div>
+                    <div class="form-group row" *ngIf="calculationResult.fullAdress">
+                        <div class="col-xs-5"></div>
+                        <div class="col-xs-7 shipping-result">{{calculationResult.fullAdress}}</div>
+                    </div>
+                    <div class="form-group row" *ngIf="calculationResult.destinationWH.Phone">
+                        <div class="col-xs-5"></div>
+                        <div class="col-xs-7 shipping-result">Phone number: {{calculationResult.destinationWH.Phone}}</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-xs-5 custom-label">Delivery Notes</div>
+                        <div class="col-xs-7 text-right shipping-result"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group row">
-          <div class="col-sm-6">Shipping Costs</div>
-          <div class="col-sm-6 text-right">
-            ${{calculationResult.totalShipping}}
-            <span (click)="showShippingCosts = !showShippingCosts" class="glyphicon glyphicon-chevron-{{showShippingCosts ? 'up' : 'down'}}"></span>
-          </div>
-        </div>
-        <ng-container *ngIf="showShippingCosts">
-          <hr/>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">International</div>
-            <div class="col-sm-6 text-right">${{calculationResult.shippingCosts.international}}</div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">Domestic</div>
-            <div class="col-sm-6 text-right">${{calculationResult.shippingCosts.domestic}}</div>
-          </div>
-        </ng-container>
-        <div class="form-group row">
-          <div class="col-sm-6">Taxes</div>
-          <div class="col-sm-6 text-right">
-            ${{calculationResult.totalTaxes}}
-            <span (click)="showTaxes = !showTaxes" class="glyphicon glyphicon-chevron-{{showTaxes ? 'up' : 'down'}}"></span>
-          </div>
-        </div>
-        <ng-container *ngIf="showTaxes">
-          <hr/>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">Local Sales Tax</div>
-            <div class="col-sm-6 text-right">${{calculationResult.taxes.salesTax}}</div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">Customs</div>
-            <div class="col-sm-6 text-right">${{calculationResult.taxes.customs}}</div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">Purchase Tax</div>
-            <div class="col-sm-6 text-right">${{calculationResult.taxes.buying}}</div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-offset-1 col-sm-5">VAT</div>
-            <div class="col-sm-6 text-right">${{calculationResult.taxes.vat}}</div>
-          </div>
-        </ng-container>
-        <div class="form-group row">
-          <div class="col-sm-6">Total Price</div>
-          <div class="col-sm-6 text-right">${{calculationResult.totalPrice}}</div>
-        </div>
-        <hr />
-        <div class="form-group row">
-          <div class="col-sm-6">Delivery Time</div>
-          <div class="col-sm-6 text-right">{{calculationResult.deliveryTimeDays}} days</div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-6">Destination WH</div>
-          <div class="col-sm-6">{{calculationResult.destinationWH.name}}</div>
-        </div>
-        <div class="form-group row" *ngIf="calculationResult.destinationWH.addr1">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6">{{calculationResult.destinationWH.addr1}}</div>
-        </div>
-        <div class="form-group row" *ngIf="calculationResult.destinationWH.addr2">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6">{{calculationResult.destinationWH.addr2}}</div>
-        </div>
-        <div class="form-group row" *ngIf="calculationResult.fullAdress">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6">{{calculationResult.fullAdress}}</div>
-        </div>
-        <div class="form-group row" *ngIf="calculationResult.destinationWH.Phone">
-          <div class="col-sm-6"></div>
-          <div class="col-sm-6">Phone number: {{calculationResult.destinationWH.Phone}}</div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-6">Delivery Notes</div>
-          <div class="col-sm-6 text-right"></div>
-        </div>
-
-      </div>
     </div>
-  </div>
 </section>
