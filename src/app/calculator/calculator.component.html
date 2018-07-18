@@ -67,12 +67,12 @@
                         </div>
                     </div>
                     <div class="order-wrap">
-                        <div class="form-group row order-1 packaging-row row-md-df ai-c"
+                        <div class="form-group row packaging-row row-md-df ai-c"
                              *ngFor="let packageItem of model.packages; let i = index">
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-1 number-packaging-row">
-                                <span *ngIf="i !== 0">{{i}}</span>
+                                <span *ngIf="i !== (model.packages.length-1)">{{i+1}}</span>
                                 <ng-container *ngIf="i != 0">
                                     <button class="btn btn-default btn-xs custom-button2 custom-button-remove hidden-desk"
                                             (click)="removePackage(i)"><i class="fas fa-trash-alt"></i></button>
@@ -99,12 +99,12 @@
                                        [(ngModel)]="packageItem.depth" required>
                             </div>
                             <div class="col-md-1">
-                                <ng-container *ngIf="model.packages.length < 10 && i == 0">
-                                    <button class="btn btn-warning btn-xs custom-button custom-button-add"
+                                <ng-container *ngIf="model.packages.length < 10 && i == (model.packages.length-1)">
+                                    <button class="btn btn-warning btn-xs custom-button custom-button-add {{model.packages.length}}"
                                             (click)="addPackage()"><span>+</span> Add
                                     </button>
                                 </ng-container>
-                                <ng-container *ngIf="i != 0">
+                                <ng-container *ngIf="i != (model.packages.length-1)">
                                     <button class="btn btn-default btn-xs custom-button2 custom-button-remove hidden-mob"
                                             (click)="removePackage(i)"><i class="fas fa-trash-alt"></i></button>
                                 </ng-container>
